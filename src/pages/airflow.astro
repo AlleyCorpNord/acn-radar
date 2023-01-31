@@ -1,0 +1,206 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+---
+
+<Layout title="Airflow">
+	<main>
+		<h1><span class="text-gradient">Airflow</span></h1>
+		<p class="summary">
+			Apache Airflow is an open source workflow management platform used to programmatically
+			author, schedule, and monitor workflows.<br/>
+			It is used to create workflows that run tasks and other jobs in a sequence of steps.<br/>
+			Airflow users can organize their jobs into a directed acyclic graph (DAG) to define
+			the order of execution and create dependencies between jobs.<br/>
+			Airflow also provides tools for monitoring, retrying, and alerting when jobs fail.
+		</p>
+
+		<ul role="list" class="link-card-grid">
+			<Card
+				href="https://airflow.apache.org/"
+				title="Pricing"
+				body="Open Source. Managed solutions available."
+			/>
+			<Card
+				href="https://airflow.apache.org/docs/#providers-packagesdocsapache-airflow-providersindexhtml"
+				title="Integrations"
+				body="Providers packages include integrations with third party projects. They are updated independently of the Apache Airflow core."
+			/>
+			<Card
+				href="#"
+				title="Ring"
+				body="Trial"
+			/>
+			<Card
+				href="https://airflow.apache.org/docs/apache-airflow/stable/license.html"
+				title="License"
+				body="Apache License 2.0"
+			/>
+		</ul>
+
+		<section id="features">
+			<h2>Features</h2>
+			<ul>
+				<li>Data engineering pipelines</li>
+				<li>Scheduled tasks</li>
+			</ul>
+		</section>
+		
+
+		<section id="pricing">
+			<h2>Pricing</h2>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Provider</th>
+						<th>Price</th>
+					</tr>
+					<tr>
+						<td><strong>Google Cloud Composer</strong></td>
+						<td>
+							<strong>Cloud Composer uses two pricing models:</strong>
+							<ul>
+								<li><a href="https://cloud.google.com/composer/pricing#sku-composer-1">Cloud Composer 1 pricing</a></li>
+								<li><a href="https://cloud.google.com/composer/pricing#sku-composer-2">Cloud Composer 2 pricing</a></li>
+								<li><a href="https://cloud.google.com/composer/pricing#additional-costs">Additional costs</a> apply both to Cloud Composer 1 and Cloud Composer 2</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section id="specifications">
+			<h2>Specifications</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Compliance</th>
+						<th>HIPAA</th>
+						<th>GDPR</th>
+						<th>PCI</th>
+						<th>SOX</th>
+						<th>ISO</th>
+						<th>Other</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Self-hosted</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+					</tr>
+					<tr>
+						<td>Google Cloud Composer</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+					</tr>
+					<tr>
+						<td>Amazon Managed Workflows for Apache Airflow</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+						<td>✅</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section id="proscons">
+			<h2>Pros</h2>
+			<ul>
+				<li>Awesome reason why Airflow is cool</li>
+			</ul>
+
+			<h2>Cons</h2>
+			<ul>
+				<li>Annoying reason why Airflow is not cool</li>
+			</ul>
+		</section>
+
+		<section id="alternatives">	
+			<h2>Alternatives</h2>
+			<ul>
+				<li>AWS Step Functions</li>
+				<li>Luigi</li>
+				<li>NiFi</li>
+				<li>Perfect</li>
+				<li>Dagster</li>
+			</ul>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 70vw;
+	}
+
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+
+	table th {
+		background-color: rgba(var(--accent), 12%);
+	}
+
+	table th, table td {
+		text-align: center;
+	}
+
+	.table {
+		min-width: 100%;
+	}
+	
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+
+	.summary, section {
+		min-width: 100%;
+		line-height: 1.6;
+		margin: 1rem 0;
+		border: 1px solid rgba(var(--accent), 25%);
+		background-color: white;
+		padding: 1rem;
+		border-radius: 0.4rem;
+	}
+
+	.summary code {
+		font-size: 0.875em;
+		font-weight: bold;
+		background: rgba(var(--accent), 12%);
+		color: rgb(var(--accent));
+		border-radius: 4px;
+		padding: 0.3em 0.45em;
+	}
+
+	.summary strong {
+		color: rgb(var(--accent));
+	}
+
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 25%);
+		gap: 1rem;
+		padding: 0;
+	}
+</style>
