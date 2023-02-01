@@ -1,13 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+// TODO: Add a way to import all the JSON files in the directory
+import * as airflow from "./airflow.json";
+import * as retool from "./retool.json";
+
+const pages = [
+	airflow,
+	retool
+]
 ---
 
 <Layout title="ACN Radar">
 	<main>
 		<h1><span class="text-gradient">ACN Radar</span></h1>
-		<ul role="list" class="link-card-grid">
-			<li><a href="airflow">Airflow</a></li>
+		<ul role="list">
+			{ pages.map((page) => (
+				<li><a href={page.slug}>{page.name}</a></li>
+			))}
 		</ul>
 	</main>
 </Layout>

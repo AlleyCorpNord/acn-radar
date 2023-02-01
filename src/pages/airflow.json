@@ -1,0 +1,9 @@
+{
+  "name": "Airflow",
+  "slug": "airflow",
+  "summary": "Apache Airflow is an open source workflow management platform used to programmatically author, schedule, and monitor workflows. It is used to create workflows that run tasks and other jobs in a sequence of steps. Airflow users can organize their jobs into a directed acyclic graph (DAG) to define the order of execution and create dependencies between jobs. Airflow also provides tools for monitoring, retrying, and alerting when jobs fail.",
+  "pricing": "Open Source. Managed solutions available.",
+  "integrations": "Providers packages include integrations with third party projects. They are updated independently of the Apache Airflow core.",
+  "ring": "Trial",
+  "license": "Apache License 2.0"
+}

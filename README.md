@@ -1,3 +1,9 @@
+# ACN Radar
+
+Our own tech radar, based on [ThoughtWorks' radar](https://www.thoughtworks.com/radar).
+
+[https://alleycorpnord.github.io/acn-radar/]
+
 # Astro Starter Kit: Basics
 
 ```
@@ -10,7 +16,6 @@ npm create astro@latest -- --template basics
 > 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
 ![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
-
 
 ## 🚀 Project Structure
 

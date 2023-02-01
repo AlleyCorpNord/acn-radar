@@ -1,40 +1,53 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+import * as airflow from "./airflow.json";
+import * as retool from "./retool.json";
+
+const { name, summary, pricing, integrations, ring, license } = Astro.props;
+
+export function getStaticPaths() {
+	const pages = [
+		retool,
+		airflow,
+	]
+	return pages.map(({ slug, name, summary, pricing, integrations, ring, license }) => {
+    return {
+      params: { slug },
+      props: { name, summary, pricing, integrations, ring, license },
+    };
+  });
+}
 ---
 
-<Layout title="Airflow">
+<Layout title={name}>
 	<main>
-		<h1><span class="text-gradient">Airflow</span></h1>
+		<h1><span class="text-gradient">{name}</span></h1>
 		<p class="summary">
-			Apache Airflow is an open source workflow management platform used to programmatically
-			author, schedule, and monitor workflows.<br/>
-			It is used to create workflows that run tasks and other jobs in a sequence of steps.<br/>
-			Airflow users can organize their jobs into a directed acyclic graph (DAG) to define
-			the order of execution and create dependencies between jobs.<br/>
-			Airflow also provides tools for monitoring, retrying, and alerting when jobs fail.
+			{ summary }
 		</p>
 
 		<ul role="list" class="link-card-grid">
 			<Card
 				href="https://airflow.apache.org/"
 				title="Pricing"
-				body="Open Source. Managed solutions available."
+				body={pricing}
 			/>
 			<Card
 				href="https://airflow.apache.org/docs/#providers-packagesdocsapache-airflow-providersindexhtml"
 				title="Integrations"
-				body="Providers packages include integrations with third party projects. They are updated independently of the Apache Airflow core."
+				body={integrations}
 			/>
 			<Card
 				href="#"
 				title="Ring"
-				body="Trial"
+				body={ring}
 			/>
 			<Card
 				href="https://airflow.apache.org/docs/apache-airflow/stable/license.html"
 				title="License"
-				body="Apache License 2.0"
+				body={license}
 			/>
 		</ul>
 
