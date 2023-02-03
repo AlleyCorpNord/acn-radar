@@ -1,0 +1,36 @@
+{
+  "name": "Dagster",
+  "slug": "dagster",
+  "summary": "Python Dagster is an open-source library that provides a framework for building modern data applications in Python. It enables users to easily create data pipelines and data applications that are type-safe, modular, and extensible. Dagster allows users to define their data pipelines in Python and execute them in a variety of execution environments, from local development to distributed cloud computing services. It also provides APIs for creating and managing data pipelines, monitoring and inspecting their execution, and deploying them in production.",
+  "pricing": {
+    "url": "https://dagster.io/pricing",
+    "title": "Pricing",
+    "body": "Open Source. Managed solutions available."
+  },
+  "integrations": {
+    "url": "https://docs.dagster.io/integrations",
+    "title": "Integrations",
+    "body": "Dagster integrates with a variety of data tools and services, including databases, data warehouses, data lakes, and data processing engines."
+  },
+  "ring": "Trial",
+  "license": "Apache License 2.0",
+  "features": ["Data engineering pipelines"],
+  "alternatives": [
+    {
+      "name": "AWS Step Functions"
+    },
+    {
+      "name": "Luigi"
+    },
+    {
+      "name": "NiFi"
+    },
+    {
+      "name": "Perfect"
+    },
+    {
+      "name": "Dagster",
+      "slug": "dagster"
+    }
+  ]
+}

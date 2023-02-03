@@ -2,20 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
+// TODO: Add a way to import all the JSON files in the directory
 import * as airflow from "./airflow.json";
 import * as retool from "./retool.json";
+import * as dagster from "./dagster.json";
 
-const { name, summary, pricing, integrations, ring, license } = Astro.props;
+const { name, summary, pricing, integrations, ring, license, features, alternatives } = Astro.props;
 
 export function getStaticPaths() {
 	const pages = [
 		retool,
 		airflow,
+		dagster
 	]
-	return pages.map(({ slug, name, summary, pricing, integrations, ring, license }) => {
+	return pages.map(({ slug, name, summary, pricing, integrations, ring, license, features, alternatives }) => {
     return {
       params: { slug },
-      props: { name, summary, pricing, integrations, ring, license },
+      props: { name, summary, pricing, integrations, ring, license, features, alternatives },
     };
   });
 }
@@ -30,14 +33,14 @@ export function getStaticPaths() {
 
 		<ul role="list" class="link-card-grid">
 			<Card
-				href="https://airflow.apache.org/"
-				title="Pricing"
-				body={pricing}
+				href={pricing.url}
+				title={pricing.title}
+				body={pricing.body}
 			/>
 			<Card
-				href="https://airflow.apache.org/docs/#providers-packagesdocsapache-airflow-providersindexhtml"
-				title="Integrations"
-				body={integrations}
+				href={integrations.url}
+				title={integrations.title}
+				body={integrations.body}
 			/>
 			<Card
 				href="#"
@@ -54,8 +57,11 @@ export function getStaticPaths() {
 		<section id="features">
 			<h2>Features</h2>
 			<ul>
-				<li>Data engineering pipelines</li>
-				<li>Scheduled tasks</li>
+				{ features.map((feature: string) => (
+				<li>
+					{feature}
+				</li>
+				))}
 			</ul>
 		</section>
 		
@@ -144,11 +150,11 @@ export function getStaticPaths() {
 		<section id="alternatives">	
 			<h2>Alternatives</h2>
 			<ul>
-				<li>AWS Step Functions</li>
-				<li>Luigi</li>
-				<li>NiFi</li>
-				<li>Perfect</li>
-				<li>Dagster</li>
+				{ alternatives.map((alternative: { slug: string | URL | null | undefined; name: string; }) => (
+				<li>
+					{alternative.slug === null ? <span>{alternative.name}</span> : <a href={alternative.slug}>{alternative.name}</a>}
+				</li>
+				))}
 			</ul>
 		</section>
 	</main>
