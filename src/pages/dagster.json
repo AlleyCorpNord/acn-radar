@@ -17,20 +17,20 @@
   "features": ["Data engineering pipelines"],
   "alternatives": [
     {
-      "name": "AWS Step Functions"
+      "name": "Apache Airflow",
+      "slug": "airflow"
     },
     {
       "name": "Luigi"
     },
     {
-      "name": "NiFi"
+      "name": "Pinot"
     },
     {
-      "name": "Perfect"
+      "name": "Prefect"
     },
     {
-      "name": "Dagster",
-      "slug": "dagster"
+      "name": "Apache Beam"
     }
   ]
 }
