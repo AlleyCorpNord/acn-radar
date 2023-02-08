@@ -1,0 +1,29 @@
+{
+  "name": "Kubernetes",
+  "slug": "k8s",
+  "summary": "Container orchestration software, extremely flexible but with a steep learning curve. Can support all manners of use cases, which is both a strength its main issue. Can make sense at scale, but requires an ops team to manage. No LTS release.",
+  "pricing": {
+    "url": "https://aws.amazon.com/eks/pricing/",
+    "title": "Pricing",
+    "body": "Software itself is free, but managed options exist (AWS EKS/GCP GKE/Azure AKS), usually around 70$/month + costs for the compute resources used"
+  },
+  "integrations": {
+    "url": "https://www.cncf.io/projects/",
+    "title": "Integrations",
+    "body": "Many extensions and a lot of tooling exists around Kubernetes, the list of CNCF projects is a good starting point"
+  },
+  "ring": "Hold",
+  "license": "Apache License 2.0",
+  "features": ["Orchestration", "Scheduling", "Containers"],
+  "alternatives": [
+    {
+      "name": "AWS ECS"
+    },
+    {
+      "name": "GCP Cloud Run"
+    },
+    {
+      "name": "AWS Lambdas"
+    }
+  ]
+}
