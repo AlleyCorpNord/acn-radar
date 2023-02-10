@@ -1,7 +1,7 @@
 {
   "name": "Retool",
   "slug": "retool",
-  "summary": "Retool is a SAAS platform that helps companies quickly build and deploy custom software applications without any coding. It provides a fast and easy way for companies to create custom web and mobile applications that can be deployed in minutes. The platform allows users to design, deploy and manage their applications with a drag-and-drop interface, and provides a library of pre-built components that can be used to quickly create applications. Additionally, Retool also offers integrations with other popular tools, such as Salesforce, Slack and Trello, making it easy to sync data and create powerful applications. All of this makes Retool an ideal platform for companies that need to quickly build and deploy custom applications for their business.",
+  "description": "Retool is a SAAS platform that helps companies quickly build and deploy custom software applications without any coding. It provides a fast and easy way for companies to create custom web and mobile applications that can be deployed in minutes. The platform allows users to design, deploy and manage their applications with a drag-and-drop interface, and provides a library of pre-built components that can be used to quickly create applications. Additionally, Retool also offers integrations with other popular tools, such as Salesforce, Slack and Trello, making it easy to sync data and create powerful applications. All of this makes Retool an ideal platform for companies that need to quickly build and deploy custom applications for their business.",
   "pricing": {
     "url": "https://retool.com/pricing",
     "title": "Pricing",
@@ -12,8 +12,14 @@
     "title": "Integrations",
     "body": "Retool integrates with a wide range of popular tools, including Salesforce, Slack, Trello, Google Sheets, Airtable, and many more."
   },
-  "ring": "Trial",
-  "license": "Proprietary",
+  "ring": "trial",
+  "quadrant": "platforms",
+  "isNew": "FALSE",
+  "license": {
+    "title": "License",
+    "body": "Proprietary",
+    "url": "https://retool.com/tos.pdf"
+  },
   "features": ["Drag-and-drop interface", "No-code"],
   "alternatives": [{ "name": "Appsmith" }]
 }

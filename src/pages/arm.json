@@ -1,7 +1,7 @@
 {
   "name": "ARM CPUs and instances",
   "slug": "arm",
-  "summary": "Most major cloud vendors have started introducing ARM-based CPUs, both directly as instances and also accessible through different services like Lambda or other managed services. Those usually bring in better (or at the very least similar) performance, at a reduced cost and lowered environmental impact. Some software might need to be specifically compiled for the platform, but required changes are usually very limited.",
+  "description": "Most major cloud vendors have started introducing ARM-based CPUs, both directly as instances and also accessible through different services like Lambda or other managed services. Those usually bring in better (or at the very least similar) performance, at a reduced cost and lowered environmental impact. Some software might need to be specifically compiled for the platform, but required changes are usually very limited.",
   "pricing": {
     "url": "https://aws.amazon.com/ec2/graviton/",
     "title": "Pricing",
@@ -12,8 +12,11 @@
     "title": "Integrations",
     "body": "N/A"
   },
-  "ring": "Adopt",
-  "license": "Proprietary",
+  "ring": "adopt",
+  "license": {
+    "title": "License",
+    "body": "Proprietary"
+  },
   "features": ["Performance", "Cost Optimization"],
   "alternatives": [
     {

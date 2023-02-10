@@ -17,12 +17,15 @@ const pages = [
 	kubernetes,
 	opentelemetry,
 	retool,
-]
+];
+
+const sheetId = "https://githubusercontent.com/AlleyCorpNord/acn-radar/main/radar.csv";
 ---
 
 <Layout title="ACN Radar">
 	<main>
 		<h1><span class="text-gradient">ACN Radar</span></h1>
+		<p>Visualization: <a href={`https://radar.thoughtworks.com/?sheetId=${sheetId}`}>Radar</a></p>
 		<ul role="list">
 			{ pages.map((page) => (
 				<li><a href={page.slug}>{page.name}</a></li>

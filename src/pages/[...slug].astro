@@ -10,7 +10,11 @@ import * as arm from "./arm.json";
 import * as kubernetes from "./kubernetes.json";
 import * as opentelemetry from "./opentelemetry.json";
 
-const { name, summary, pricing, integrations, ring, license, features, alternatives } = Astro.props;
+const { name, description, pricing, integrations, ring, license, features, alternatives } = Astro.props;
+
+function capitalize(string: string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 export function getStaticPaths() {
 	const pages = [
@@ -21,10 +25,10 @@ export function getStaticPaths() {
 		kubernetes,
 		opentelemetry
 	]
-	return pages.map(({ slug, name, summary, pricing, integrations, ring, license, features, alternatives }) => {
+	return pages.map(({ slug, name, description, pricing, integrations, ring, license, features, alternatives }) => {
     return {
       params: { slug },
-      props: { name, summary, pricing, integrations, ring, license, features, alternatives },
+      props: { name, description, pricing, integrations, ring, license, features, alternatives },
     };
   });
 }
@@ -33,8 +37,8 @@ export function getStaticPaths() {
 <Layout title={name}>
 	<main>
 		<h1><span class="text-gradient">{name}</span></h1>
-		<p class="summary">
-			{ summary }
+		<p class="description">
+			{ description }
 		</p>
 
 		<ul role="list" class="link-card-grid">
@@ -51,12 +55,12 @@ export function getStaticPaths() {
 			<Card
 				href="#"
 				title="Ring"
-				body={ring}
+				body={capitalize(ring)}
 			/>
 			<Card
-				href="https://airflow.apache.org/docs/apache-airflow/stable/license.html"
-				title="License"
-				body={license}
+				href={license.url}
+				title={license.title}
+				body={license.body}
 			/>
 		</ul>
 
@@ -70,7 +74,6 @@ export function getStaticPaths() {
 				))}
 			</ul>
 		</section>
-
 
 		<section id="pricing">
 			<h2>Pricing</h2>
@@ -199,7 +202,7 @@ export function getStaticPaths() {
 		background-position: 0%;
 	}
 
-	.summary, section {
+	.description, section {
 		min-width: 100%;
 		line-height: 1.6;
 		margin: 1rem 0;
@@ -209,7 +212,7 @@ export function getStaticPaths() {
 		border-radius: 0.4rem;
 	}
 
-	.summary code {
+	.description code {
 		font-size: 0.875em;
 		font-weight: bold;
 		background: rgba(var(--accent), 12%);
@@ -218,7 +221,7 @@ export function getStaticPaths() {
 		padding: 0.3em 0.45em;
 	}
 
-	.summary strong {
+	.description strong {
 		color: rgb(var(--accent));
 	}
 

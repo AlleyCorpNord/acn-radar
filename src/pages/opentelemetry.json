@@ -1,7 +1,7 @@
 {
   "name": "OpenTelemetry",
   "slug": "otel",
-  "summary": "OpenTelemetry is an open source and vendore neutral project and collection of integrations, aimed at standardizing instrumentation, data collection and delivery of observability data.",
+  "description": "OpenTelemetry is an open source and vendore neutral project and collection of integrations, aimed at standardizing instrumentation, data collection and delivery of observability data.",
   "pricing": {
     "url": "https://opentelemetry.io",
     "title": "Pricing",
@@ -12,8 +12,11 @@
     "title": "Integrations",
     "body": "Many integrations, both on the instrumentation side and on the export side. Almost all major telemetry/monitoring vendors now support OpenTelemetry"
   },
-  "ring": "Adopt",
-  "license": "Apache License 2.0",
+  "ring": "adopt",
+  "license": {
+    "title": "License",
+    "body": "Apache License 2.0"
+  },
   "features": ["Telemetry collection", "Tracing", "Logging"],
   "alternatives": [
     {
