@@ -1,0 +1,28 @@
+backend:
+  name: github
+  repo: AlleyCorpNord/acn-radar
+  branch: decap # Branch to update (optional; defaults to master)
+  auth_endpoint: auth
+media_folder: public/img
+public_folder: img
+publish_mode: editorial_workflow
+collections:
+  - label: "Blips"
+    name: "blips"
+    folder: "src/_blips"
+    create: true
+    editor:
+      preview: true
+    filter:
+      field: "ring"
+      value: "Adopt"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "markdown" }
+      - {
+          label: "Ring",
+          name: "ring",
+          widget: "select",
+          options: ["Adopt", "Trial", "Assess", "Hold"],
+        }
+      - { label: "License", name: "license", "text" }
