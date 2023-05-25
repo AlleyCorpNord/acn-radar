@@ -3,7 +3,6 @@ backend:
   repo: AlleyCorpNord/acn-radar
   branch: decap # Branch to update (optional; defaults to master)
   auth_endpoint: auth
-local_backend: true
 media_folder: public/img
 public_folder: img
 publish_mode: editorial_workflow
