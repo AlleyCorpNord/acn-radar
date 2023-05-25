@@ -41,7 +41,7 @@ const importBlips = async () => {
   markdownFiles.splice(halfLen, halfLen);
   return Promise.all(
     markdownFiles.map(async (path) => {
-      // const markdown = await import(`../blips/${path}`);
+      const markdown = await import(`../blips/${path}`);
       return markdown.attributes;
     })
   );
