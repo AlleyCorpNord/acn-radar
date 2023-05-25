@@ -3,13 +3,14 @@ backend:
   repo: AlleyCorpNord/acn-radar
   branch: decap # Branch to update (optional; defaults to master)
   auth_endpoint: auth
+local_backend: true
 media_folder: public/img
 public_folder: img
 publish_mode: editorial_workflow
 collections:
   - label: "Blips"
     name: "blips"
-    folder: "src/_blips"
+    folder: "src/blips"
     create: true
     editor:
       preview: true
