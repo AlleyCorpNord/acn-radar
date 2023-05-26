@@ -10,6 +10,7 @@ collections:
   - label: "Blips"
     name: "blips"
     folder: "src/blips"
+    slug: "{{slug}}"
     create: true
     editor:
       preview: true
@@ -24,5 +25,17 @@ collections:
           name: "ring",
           widget: "select",
           options: ["Adopt", "Trial", "Assess", "Hold"],
+        }
+      - {
+          label: "Quadrant",
+          name: "quadrant",
+          widget: "select",
+          options:
+            [
+              "Languages & Frameworks",
+              "Data Management",
+              "Infrastructure & Operations",
+              "Application Platforms",
+            ],
         }
       - { label: "License", name: "license", "text" }
