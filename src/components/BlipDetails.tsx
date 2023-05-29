@@ -28,6 +28,10 @@ export const BlipDetails: FC<BlipProps> = ({ blip }) => {
         <strong>Description:</strong>&nbsp;
         {blip.description}
       </div>
+      <div>
+        <strong>License:</strong>&nbsp;
+        {blip.license}
+      </div>
     </div>
   );
 };
