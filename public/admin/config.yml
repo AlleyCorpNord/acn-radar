@@ -39,3 +39,4 @@ collections:
             ],
         }
       - { label: "License", name: "license", "text" }
+      - { label: "Projects", name: "projects", widget: "list" }

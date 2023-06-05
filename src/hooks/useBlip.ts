@@ -1,13 +1,5 @@
 import { useEffect, useState } from "react";
-
-export interface Blip {
-  title: string;
-  description: string;
-  license: string;
-  ring: "adopt" | "trial" | "assess" | "hold";
-  quadrant: "tools" | "techniques" | "platforms" | "languages-and-frameworks";
-  slug: string;
-}
+import { Blip } from "../types/Blip";
 
 /*
  * This hook is used to fetch blips from the blips directory.

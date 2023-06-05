@@ -1,5 +1,5 @@
 import React, { type FC } from "react";
-import { Blip } from "../hooks/useBlip";
+import { Blip } from "../types/Blip";
 
 interface BlipProps {
   blip: Blip;
