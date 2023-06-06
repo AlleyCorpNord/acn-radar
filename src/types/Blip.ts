@@ -2,15 +2,26 @@ export interface Blip {
   title: string;
   description: string;
   license: string;
-  ring: "adopt" | "trial" | "assess" | "hold";
-  quadrant: "tools" | "techniques" | "platforms" | "languages-and-frameworks";
+  ring: keyof typeof Rings;
+  quadrant: keyof typeof Quadrants;
   projects: string[];
   slug: string;
 }
 
-const Quadrants = {
+export const Quadrants = {
   tools: "Tools",
   techniques: "Techniques",
   platforms: "Platforms",
   "languages-and-frameworks": "Languages & Frameworks",
 } as const;
+
+export const allQuadrants = Object.keys(Quadrants);
+
+export const Rings = {
+  adopt: "Adopt",
+  trial: "Trial",
+  assess: "Assess",
+  hold: "Hold",
+} as const;
+
+export const allRings = Object.keys(Rings);

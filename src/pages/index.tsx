@@ -12,9 +12,9 @@ import {
 } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 import { FC, useState } from "react";
-import { Blip } from "../types/Blip";
+import { Blip, Quadrants, Rings, allQuadrants, allRings } from "../types/Blip";
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   header: {
     display: "flex",
     justifyContent: "space-between",
@@ -53,6 +53,12 @@ const Home = () => {
 
   const [searchParams, setSearchParams] = useState<SearchParams>({});
 
+  // list all projects, removing duplicates and sorting alphabetically
+  const projects = blips
+    .flatMap((blip) => blip.projects)
+    .filter((project, index, self) => self.indexOf(project) === index)
+    .sort((a, b) => a.localeCompare(b));
+
   return (
     <div>
       <Head>
@@ -60,15 +66,27 @@ const Home = () => {
       </Head>
       <HomeHeader />
       <Container>
-        <SearchBar />
+        <SearchBar projects={projects} />
         <BlipsTable blips={blips} />
       </Container>
     </div>
   );
 };
 
-const SearchBar = () => {
+const SearchBar: FC<{ projects: string[] }> = ({ projects }) => {
   const { classes } = useStyles();
+
+  console.log(allQuadrants);
+
+  const quadrantData = allQuadrants.map((quadrant) => ({
+    value: quadrant,
+    label: Quadrants[quadrant],
+  }));
+
+  const ringData = allRings.map((ring) => ({
+    value: ring,
+    label: Rings[ring],
+  }));
 
   return (
     <Container className={classes.searchBar}>
@@ -85,36 +103,21 @@ const SearchBar = () => {
         placeholder="Quadrant"
         radius="md"
         clearable={true}
-        data={[
-          { value: "react", label: "React" },
-          { value: "ng", label: "Angular" },
-          { value: "svelte", label: "Svelte" },
-          { value: "vue", label: "Vue" },
-        ]}
+        data={quadrantData}
       />
       <Select
         className={classes.select}
         placeholder="Ring"
         radius="md"
         clearable={true}
-        data={[
-          { value: "react", label: "React" },
-          { value: "ng", label: "Angular" },
-          { value: "svelte", label: "Svelte" },
-          { value: "vue", label: "Vue" },
-        ]}
+        data={ringData}
       />
       <Select
         className={classes.select}
         placeholder="Project"
         clearable={true}
         radius="md"
-        data={[
-          { value: "react", label: "React" },
-          { value: "ng", label: "Angular" },
-          { value: "svelte", label: "Svelte" },
-          { value: "vue", label: "Vue" },
-        ]}
+        data={projects.map((project) => ({ value: project, label: project }))}
       />
     </Container>
   );
@@ -146,7 +149,7 @@ interface BlipsTableProps {
 
 const BlipsTable: FC<BlipsTableProps> = ({ blips }) => {
   return (
-    <Table>
+    <Table highlightOnHover>
       <thead>
         <tr>
           <th>Title</th>
@@ -157,11 +160,15 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips }) => {
       </thead>
       <tbody>
         {blips.map((blip) => (
-          <tr key={blip.title}>
+          <tr
+            key={blip.title}
+            onClick={() => console.log("Clicked on ", blip.title)}
+            style={{ cursor: "pointer" }}
+          >
             <td>{blip.title}</td>
             <td>{blip.quadrant}</td>
             <td>{blip.ring}</td>
-            <td>{blip.projects}</td>
+            <td>{blip.projects?.join(", ")}</td>
           </tr>
         ))}
       </tbody>

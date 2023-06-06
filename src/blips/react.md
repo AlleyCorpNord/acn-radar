@@ -360,4 +360,5 @@ description: >
 ring: Adopt
 quadrant: languages-and-frameworks
 license: none
+projects: ["Ensage", "Podsie", "Rogo"]
 ---
