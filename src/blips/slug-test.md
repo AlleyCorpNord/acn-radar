@@ -1,7 +1,7 @@
 ---
 title: Slug test
-description: W﻿hat slug will it use?
-ring: Trial
-quadrant: Languages & Frameworks
+description: What slug will it use?
+ring: trial
+quadrant: languages-and-frameworks
 license: none
 ---

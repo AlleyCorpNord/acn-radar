@@ -1,7 +1,7 @@
 ---
 title: Test
 description: asd
-ring: Trial
+ring: trial
 quadrant: tools
 license: none
 ---

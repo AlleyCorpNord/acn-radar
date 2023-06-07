@@ -1,8 +1,7 @@
 import Head from "next/head";
-import { useBlip } from "../hooks/useBlip";
+import { SearchParams, useBlip } from "../hooks/useBlip";
 import {
   createStyles,
-  Group,
   Button,
   Container,
   TextInput,
@@ -41,17 +40,9 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-interface SearchParams {
-  term?: string;
-  quadrant?: string;
-  ring?: string;
-  project?: string;
-}
-
 const Home = () => {
-  const blips = useBlip();
-
   const [searchParams, setSearchParams] = useState<SearchParams>({});
+  const blips = useBlip(searchParams);
 
   // list all projects, removing duplicates and sorting alphabetically
   const projects = blips
@@ -66,17 +57,29 @@ const Home = () => {
       </Head>
       <HomeHeader />
       <Container>
-        <SearchBar projects={projects} />
+        <SearchBar
+          projects={projects}
+          searchParams={searchParams}
+          onChange={setSearchParams}
+        />
         <BlipsTable blips={blips} />
       </Container>
     </div>
   );
 };
 
-const SearchBar: FC<{ projects: string[] }> = ({ projects }) => {
-  const { classes } = useStyles();
+interface SearchBarProps {
+  projects: string[];
+  searchParams: SearchParams;
+  onChange: (searchParams: SearchParams) => void;
+}
 
-  console.log(allQuadrants);
+const SearchBar: FC<SearchBarProps> = ({
+  projects,
+  searchParams,
+  onChange,
+}) => {
+  const { classes } = useStyles();
 
   const quadrantData = allQuadrants.map((quadrant) => ({
     value: quadrant,
@@ -96,6 +99,10 @@ const SearchBar: FC<{ projects: string[] }> = ({ projects }) => {
         size="sm"
         placeholder="Search"
         rightSectionWidth={42}
+        value={searchParams.term ?? ""}
+        onChange={(event) =>
+          onChange({ ...searchParams, term: event.currentTarget.value })
+        }
       />
 
       <Select
@@ -104,6 +111,10 @@ const SearchBar: FC<{ projects: string[] }> = ({ projects }) => {
         radius="md"
         clearable={true}
         data={quadrantData}
+        value={searchParams.quadrant}
+        onChange={(value) =>
+          onChange({ ...searchParams, quadrant: value as string })
+        }
       />
       <Select
         className={classes.select}
@@ -111,6 +122,10 @@ const SearchBar: FC<{ projects: string[] }> = ({ projects }) => {
         radius="md"
         clearable={true}
         data={ringData}
+        value={searchParams.ring}
+        onChange={(value) =>
+          onChange({ ...searchParams, ring: value as string })
+        }
       />
       <Select
         className={classes.select}
@@ -118,6 +133,10 @@ const SearchBar: FC<{ projects: string[] }> = ({ projects }) => {
         clearable={true}
         radius="md"
         data={projects.map((project) => ({ value: project, label: project }))}
+        value={searchParams.project}
+        onChange={(value) =>
+          onChange({ ...searchParams, project: value as string })
+        }
       />
     </Container>
   );
@@ -153,6 +172,7 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips }) => {
       <thead>
         <tr>
           <th>Title</th>
+          <th>Description</th>
           <th>Quadrant</th>
           <th>Ring</th>
           <th>Projects</th>
@@ -166,8 +186,19 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips }) => {
             style={{ cursor: "pointer" }}
           >
             <td>{blip.title}</td>
-            <td>{blip.quadrant}</td>
-            <td>{blip.ring}</td>
+            <td style={{ maxWidth: "220px" }}>
+              <div
+                style={{
+                  maxHeight: "3.5em",
+                  overflow: "hidden",
+                  lineClamp: 2,
+                }}
+              >
+                {blip.description}
+              </div>
+            </td>
+            <td>{Quadrants[blip.quadrant]}</td>
+            <td>{Rings[blip.ring]}</td>
             <td>{blip.projects?.join(", ")}</td>
           </tr>
         ))}
