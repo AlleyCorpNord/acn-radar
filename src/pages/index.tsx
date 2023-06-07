@@ -8,10 +8,12 @@ import {
   Select,
   Table,
   Header,
+  Drawer,
 } from "@mantine/core";
 import { Search } from "tabler-icons-react";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Blip, Quadrants, Rings, allQuadrants, allRings } from "../types/Blip";
+import { useDisclosure } from "@mantine/hooks";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -41,8 +43,25 @@ const useStyles = createStyles(() => ({
 }));
 
 const Home = () => {
+  const [selectedBlip, setSelectedBlip] = useState<Blip | null>();
+  const [opened, { open, close }] = useDisclosure(false);
   const [searchParams, setSearchParams] = useState<SearchParams>({});
   const [blips, filteredBlips] = useBlip(searchParams);
+
+  const fragment = typeof window !== "undefined" ? window?.location.hash : null;
+  if (fragment) {
+    const blip = blips.find((blip) => blip.slug === fragment.slice(1));
+    if (blip !== selectedBlip) setSelectedBlip(blip);
+  }
+
+  const removeFragment = () => {
+    window.location.replace("#");
+    history.replaceState({}, "", window.location.href.slice(0, -1));
+  };
+
+  useEffect(() => {
+    if (selectedBlip) open();
+  }, [selectedBlip]);
 
   // list all projects, removing duplicates and sorting alphabetically
   const projects = blips
@@ -55,16 +74,40 @@ const Home = () => {
   return (
     <div>
       <Head>
-        <title>My page title</title>
+        <title>ACN Radar</title>
       </Head>
       <HomeHeader />
+      <Drawer
+        opened={opened}
+        onClose={() => {
+          setTimeout(() => {
+            setSelectedBlip(null);
+          }, 200);
+          removeFragment();
+          close();
+        }}
+        position="right"
+        size="lg"
+      >
+        {selectedBlip && (
+          <>
+            <h2>{selectedBlip.title}</h2>
+            <div>test</div>
+          </>
+        )}
+      </Drawer>
       <Container>
         <SearchBar
           projects={projects}
           searchParams={searchParams}
           onChange={setSearchParams}
         />
-        <BlipsTable blips={filteredBlips} />
+        <BlipsTable
+          blips={filteredBlips}
+          onClick={(blip) => {
+            setSelectedBlip(blip);
+          }}
+        />
       </Container>
     </div>
   );
@@ -166,9 +209,10 @@ function HomeHeader() {
 
 interface BlipsTableProps {
   blips: Blip[];
+  onClick?: (blip: Blip) => void;
 }
 
-const BlipsTable: FC<BlipsTableProps> = ({ blips }) => {
+const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
   return (
     <Table highlightOnHover>
       <thead>
@@ -184,7 +228,7 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips }) => {
         {blips.map((blip) => (
           <tr
             key={blip.title}
-            onClick={() => console.log("Clicked on ", blip.title)}
+            onClick={() => onClick(blip)}
             style={{ cursor: "pointer" }}
           >
             <td>{blip.title}</td>
