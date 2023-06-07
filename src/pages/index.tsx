@@ -42,12 +42,14 @@ const useStyles = createStyles(() => ({
 
 const Home = () => {
   const [searchParams, setSearchParams] = useState<SearchParams>({});
-  const blips = useBlip(searchParams);
+  const [blips, filteredBlips] = useBlip(searchParams);
 
   // list all projects, removing duplicates and sorting alphabetically
   const projects = blips
     .flatMap((blip) => blip.projects)
-    .filter((project, index, self) => self.indexOf(project) === index)
+    .filter(
+      (project, index, self) => project && self.indexOf(project) === index
+    )
     .sort((a, b) => a.localeCompare(b));
 
   return (
@@ -62,7 +64,7 @@ const Home = () => {
           searchParams={searchParams}
           onChange={setSearchParams}
         />
-        <BlipsTable blips={blips} />
+        <BlipsTable blips={filteredBlips} />
       </Container>
     </div>
   );
@@ -191,7 +193,6 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips }) => {
                 style={{
                   maxHeight: "3.5em",
                   overflow: "hidden",
-                  lineClamp: 2,
                 }}
               >
                 {blip.description}

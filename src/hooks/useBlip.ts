@@ -60,7 +60,7 @@ export const useBlip = (searchParams: SearchParams = {}) => {
     return true;
   });
 
-  return filteredBlips;
+  return [blips, filteredBlips];
 };
 
 const getBlipNames = async () => {
