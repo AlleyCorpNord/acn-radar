@@ -14,6 +14,7 @@ import { Search } from "tabler-icons-react";
 import { FC, useEffect, useState } from "react";
 import { Blip, Quadrants, Rings, allQuadrants, allRings } from "../types/Blip";
 import { useDisclosure } from "@mantine/hooks";
+import { BlipDetails } from "../components/BlipDetails";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -89,12 +90,7 @@ const Home = () => {
         position="right"
         size="lg"
       >
-        {selectedBlip && (
-          <>
-            <h2>{selectedBlip.title}</h2>
-            <div>test</div>
-          </>
-        )}
+        {selectedBlip && <BlipDetails blip={selectedBlip} />}
       </Drawer>
       <Container>
         <SearchBar

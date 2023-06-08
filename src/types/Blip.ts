@@ -1,6 +1,8 @@
 export interface Blip {
   title: string;
+  link: string;
   description: string;
+  opinion: string;
   license: string;
   ring: keyof typeof Rings;
   quadrant: keyof typeof Quadrants;

@@ -14,17 +14,22 @@ collections:
     create: true
     editor:
       preview: true
-    filter:
-      field: "ring"
-      value: "Adopt"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "markdown" }
+      - { label: "Opinion", name: "opinion", widget: "markdown" }
+      - { label: "Link", name: "link", widget: "string" }
       - {
           label: "Ring",
           name: "ring",
           widget: "select",
-          options: ["Adopt", "Trial", "Assess", "Hold"],
+          options:
+            [
+              { label: "Adopt", value: "adopt" },
+              { label: "Trial", value: "trial" },
+              { label: "Assess", value: "assess" },
+              { label: "Hold", value: "hold" },
+            ],
         }
       - {
           label: "Quadrant",
@@ -32,11 +37,14 @@ collections:
           widget: "select",
           options:
             [
-              "Languages & Frameworks",
-              "Data Management",
-              "Infrastructure & Operations",
-              "Application Platforms",
+              {
+                label: "Languages & Frameworks",
+                value: "languages-and-frameworks",
+              },
+              { label: "Techniques", value: "techniques" },
+              { label: "Platforms", value: "platforms" },
+              { label: "tools", value: "Tools" },
             ],
         }
-      - { label: "License", name: "license", "text" }
+      - { label: "License", name: "license", widget: "text" }
       - { label: "Projects", name: "projects", widget: "list" }
