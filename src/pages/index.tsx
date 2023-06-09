@@ -8,6 +8,7 @@ import {
   Select,
   Table,
   Header,
+  Text,
   Drawer,
 } from "@mantine/core";
 import { Search } from "tabler-icons-react";
@@ -191,10 +192,10 @@ function HomeHeader() {
       <Container className={classes.header}>
         <div>ACN Radar</div>
         <Button
-          variant="light"
-          color="blue"
+          component="a"
+          target="_blank"
+          href="http://localhost:3000/admin/index.html#/collections/blips/new"
           size="xs"
-          onClick={() => console.log("Test")}
         >
           Add Blip
         </Button>
@@ -229,14 +230,7 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
           >
             <td>{blip.title}</td>
             <td style={{ maxWidth: "220px" }}>
-              <div
-                style={{
-                  maxHeight: "3.5em",
-                  overflow: "hidden",
-                }}
-              >
-                {blip.description}
-              </div>
+              <Text lineClamp={2}>{blip.description}</Text>
             </td>
             <td>{Quadrants[blip.quadrant]}</td>
             <td>{Rings[blip.ring]}</td>

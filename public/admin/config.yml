@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: AlleyCorpNord/acn-radar
-  branch: decap # Branch to update (optional; defaults to master)
+  branch: redesign # Branch to update (optional; defaults to master)
   auth_endpoint: auth
 media_folder: public/img
 public_folder: img
@@ -9,7 +9,7 @@ publish_mode: editorial_workflow
 collections:
   - label: "Blips"
     name: "blips"
-    folder: "src/blips"
+    folder: "src/content/blips"
     slug: "{{slug}}"
     create: true
     editor:
@@ -47,4 +47,23 @@ collections:
             ],
         }
       - { label: "License", name: "license", widget: "text" }
-      - { label: "Projects", name: "projects", widget: "list" }
+      - {
+          label: "Projects",
+          name: "projects",
+          widget: "relation",
+          collection: "projects",
+          multiple: true,
+          value_field: "slug",
+          search_fields: ["title"],
+        }
+  - label: "Projects"
+    name: "projects"
+    folder: "src/content/projects"
+    slug: "{{slug}}"
+    create: true
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "markdown" }
+      - { label: "Link", name: "link", widget: "string" }

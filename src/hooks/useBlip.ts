@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { Blip } from "../types/Blip";
 import MiniSearch from "minisearch";
 
+const blipsPath = "content/blips";
+
 /*
- *
+ * Parameters that can be used to filter blips.
  */
 export interface SearchParams {
   term?: string;
@@ -18,12 +20,12 @@ let minisearch = new MiniSearch({
   storeFields: ["title", "description", "license"],
 });
 
-/*
- * This hook is used to fetch blips from the blips directory.
- * If blipName is null, all blips are returned.
- * If blipName is not null, only the blip with the given name is returned.
+/**
+ * This hook returns a list of all blips and a filtered list of blips based on the search parameters.
+ * @param {SearchParams} searchParams - The search parameters to filter the blips by.
+ * @returns {[Blip[], Blip[]]} - A tuple containing the list of all blips and the filtered list of blips.
  */
-export const useBlip = (searchParams: SearchParams = {}) => {
+export const useBlip = (searchParams: SearchParams = {}): [Blip[], Blip[]] => {
   const [blips, setBlips] = useState<Blip[]>([]);
 
   useEffect(() => {
@@ -65,10 +67,9 @@ export const useBlip = (searchParams: SearchParams = {}) => {
 
 const getBlipNames = async () => {
   const markdownFilePaths = require
-    .context("../blips", false, /\.md$/)
+    .context(`../content/blips`, false, /\.md$/)
     .keys()
     .map((relativePath) => relativePath.substring(2));
-
   const halfLen = markdownFilePaths.length / 2;
   markdownFilePaths.splice(halfLen, halfLen);
   return markdownFilePaths.map((path) => path.split(".")[0]);
@@ -78,7 +79,7 @@ function importBlip(): Promise<Blip[]>;
 function importBlip(name: string): Promise<Blip>;
 async function importBlip(name?: string): Promise<Blip | Blip[] | undefined> {
   if (name) {
-    const blip = await import(`../blips/${name}.md`);
+    const blip = await import(`../${blipsPath}/${name}.md`);
     if (!blip) return undefined;
     return {
       ...blip.attributes,
