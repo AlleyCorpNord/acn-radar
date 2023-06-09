@@ -53,7 +53,8 @@ collections:
           widget: "relation",
           collection: "projects",
           multiple: true,
-          value_field: "slug",
+          value_field: "{{slug}}",
+          display_fields: ["{{title}}"],
           search_fields: ["title"],
         }
   - label: "Projects"

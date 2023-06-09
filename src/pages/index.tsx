@@ -12,10 +12,11 @@ import {
   Drawer,
 } from "@mantine/core";
 import { Search } from "tabler-icons-react";
-import { FC, useEffect, useState } from "react";
+import { FC, use, useEffect, useState } from "react";
 import { Blip, Quadrants, Rings, allQuadrants, allRings } from "../types/Blip";
 import { useDisclosure } from "@mantine/hooks";
 import { BlipDetails } from "../components/BlipDetails";
+import useProject from "../hooks/useProject";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -49,6 +50,8 @@ const Home = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [searchParams, setSearchParams] = useState<SearchParams>({});
   const [blips, filteredBlips] = useBlip(searchParams);
+  const projectsHook = useProject();
+  console.log(projectsHook);
 
   const fragment = typeof window !== "undefined" ? window?.location.hash : null;
   if (fragment) {

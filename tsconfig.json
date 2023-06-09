@@ -4,10 +4,7 @@
     "allowJs": true,
     "incremental": true,
     "jsx": "preserve",
-    "types": [
-      "node",
-      "webpack-env" // here
-    ],
+    "types": ["node", "webpack-env"],
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
