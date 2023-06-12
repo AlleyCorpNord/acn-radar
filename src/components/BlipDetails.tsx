@@ -1,5 +1,5 @@
 import React, { type FC } from "react";
-import { Blip, Quadrants, Rings } from "../types/Blip";
+import { Blip, BusinessModel, Quadrants, Rings } from "../types/Blip";
 import DOMPurify from "dompurify";
 import { marked } from "marked";
 import {
@@ -71,12 +71,20 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             <Title order={3}>Projects</Title>
             <List withPadding>
               {blip.projects?.map((project) => (
-                <List.Item key={project}>{project}</List.Item>
+                <List.Item key={project.slug}>{project.title}</List.Item>
               ))}
             </List>
           </Flex>
         )}
-        <Group position="apart" style={{}}>
+
+        {blip.businessModel && (
+          <Flex direction="column" gap="sm">
+            <Title order={3}>Business Model</Title>
+            <Text>{BusinessModel[blip.businessModel]}</Text>
+          </Flex>
+        )}
+
+        <Group position="apart">
           <Text>
             <a
               href={`https://github.com/AlleyCorpNord/acn-radar/tree/redesign/src/content/blips/${blip.slug}.md`}

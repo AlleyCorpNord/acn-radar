@@ -20,7 +20,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/index.tsx",
-    "next.config.mjs"
+    "next.config.mjs",
+    "next.config.mts"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,41 +1,53 @@
-/*
+const contexts = {
+  blips: require.context(`../content/blips`, false, /\.md$/),
+  projects: require.context(`../content/projects`, false, /\.md$/),
+};
 
-async function getDocumentNames(path: string): Promise<string[]> {
-  // const context = require.context(path, false, /\.md$/);
-  console.log("path: ", path);
-  const context = await import(`../${path}/`);
-  console.log("context: ", context);
-  // const markdownFilePaths = require
-  //   .context("" + path, false, /\.md$/)
-  //   .keys()
-  //   .map((relativePath) => relativePath.substring(2));
+const collectionType = {
+  blips: "blips",
+  projects: "projects",
+} as const;
 
-  // const halfLen = markdownFilePaths.length / 2;
-  // markdownFilePaths.splice(halfLen, halfLen);
+export type CollectionType = keyof typeof collectionType;
 
-  // return markdownFilePaths.map((path) => path.split(".")[0]);
-  return [];
+const collectionPath: { [collection in CollectionType]: string } = {
+  blips: "blips",
+  projects: "projects",
+};
+
+async function getDocumentNames(path: CollectionType): Promise<string[]> {
+  const context = contexts[path];
+  const markdownFilePaths = context
+    .keys()
+    .map((relativePath) => relativePath.substring(2));
+
+  const halfLen = markdownFilePaths.length / 2;
+  markdownFilePaths.splice(halfLen, halfLen);
+  return markdownFilePaths.map((path) => path.split(".")[0]);
 }
 
-*/
-
-export function importContent<T>(path: string): Promise<T[]>;
-export function importContent<T>(path: string, name: string): Promise<T>;
+export function importContent<T>(collection: CollectionType): Promise<T[]>;
+export function importContent<T>(
+  collection: CollectionType,
+  name: string
+): Promise<T>;
 export async function importContent<T>(
-  path: string,
+  collection: CollectionType,
   name?: string
 ): Promise<T | T[] | undefined> {
   if (name) {
-    const blip = await import(`../${path}/${name}.md`);
-    if (!blip) return undefined;
+    const document = await import(
+      `../content/${collectionPath[collection]}/${name}.md`
+    );
+    if (!document) return undefined;
     return {
-      ...blip.attributes,
+      ...document.attributes,
       slug: name,
     };
   } else {
-    const fileNames = []; // await getDocumentNames(path);
+    const fileNames = await getDocumentNames(collection);
     return Promise.all(
-      fileNames.map((name) => importContent(path, name))
+      fileNames.map((name) => importContent(collection, name))
     ) as Promise<T[]>;
   }
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Project from "../types/Project";
 import { importContent } from "../helpers/DocumentFetching";
 
-const projectsPath = "content/projects";
+const projectsCollection = "projects";
 
 /**
  * This hook returns a list of all propjects
@@ -13,7 +13,7 @@ const useProject = (): Project[] => {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    importContent<Project>(projectsPath).then((projects) => {
+    importContent<Project>(projectsCollection).then((projects) => {
       setProjects(Array.isArray(projects) ? projects : [projects]);
     });
   }, []);

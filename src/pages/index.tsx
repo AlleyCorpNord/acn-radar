@@ -12,11 +12,12 @@ import {
   Drawer,
 } from "@mantine/core";
 import { Search } from "tabler-icons-react";
-import { FC, use, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Blip, Quadrants, Rings, allQuadrants, allRings } from "../types/Blip";
 import { useDisclosure } from "@mantine/hooks";
 import { BlipDetails } from "../components/BlipDetails";
 import useProject from "../hooks/useProject";
+import Project from "../types/Project";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -50,8 +51,10 @@ const Home = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [searchParams, setSearchParams] = useState<SearchParams>({});
   const [blips, filteredBlips] = useBlip(searchParams);
-  const projectsHook = useProject();
-  console.log(projectsHook);
+  const projects = useProject();
+  const sortedProjects = projects.sort((a, b) =>
+    a.title.localeCompare(b.title)
+  );
 
   const fragment = typeof window !== "undefined" ? window?.location.hash : null;
   if (fragment) {
@@ -64,17 +67,16 @@ const Home = () => {
     history.replaceState({}, "", window.location.href.slice(0, -1));
   };
 
+  console.log(filteredBlips);
   useEffect(() => {
     if (selectedBlip) open();
   }, [selectedBlip]);
 
-  // list all projects, removing duplicates and sorting alphabetically
-  const projects = blips
-    .flatMap((blip) => blip.projects)
-    .filter(
-      (project, index, self) => project && self.indexOf(project) === index
-    )
-    .sort((a, b) => a.localeCompare(b));
+  filteredBlips.forEach((element) => {
+    element.projects = projects.filter((project) =>
+      element.projectIds.includes(project.slug)
+    );
+  });
 
   return (
     <div>
@@ -98,7 +100,7 @@ const Home = () => {
       </Drawer>
       <Container>
         <SearchBar
-          projects={projects}
+          projects={sortedProjects}
           searchParams={searchParams}
           onChange={setSearchParams}
         />
@@ -114,7 +116,7 @@ const Home = () => {
 };
 
 interface SearchBarProps {
-  projects: string[];
+  projects: Project[];
   searchParams: SearchParams;
   onChange: (searchParams: SearchParams) => void;
 }
@@ -177,7 +179,10 @@ const SearchBar: FC<SearchBarProps> = ({
         placeholder="Project"
         clearable={true}
         radius="md"
-        data={projects.map((project) => ({ value: project, label: project }))}
+        data={projects.map((project) => ({
+          value: project.slug,
+          label: project.title,
+        }))}
         value={searchParams.project}
         onChange={(value) =>
           onChange({ ...searchParams, project: value as string })
@@ -237,7 +242,7 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
             </td>
             <td>{Quadrants[blip.quadrant]}</td>
             <td>{Rings[blip.ring]}</td>
-            <td>{blip.projects?.join(", ")}</td>
+            <td>{blip.projects?.map((project) => project.title).join(", ")}</td>
           </tr>
         ))}
       </tbody>

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Blip } from "../types/Blip";
 import MiniSearch from "minisearch";
+import { CollectionType, importContent } from "../helpers/DocumentFetching";
 
-const blipsPath = "content/blips";
+const blipCollection: CollectionType = "blips";
 
 /*
  * Parameters that can be used to filter blips.
@@ -29,7 +30,7 @@ export const useBlip = (searchParams: SearchParams = {}): [Blip[], Blip[]] => {
   const [blips, setBlips] = useState<Blip[]>([]);
 
   useEffect(() => {
-    importBlip().then((blips) => {
+    importContent<Blip>(blipCollection).then((blips) => {
       setBlips(Array.isArray(blips) ? blips : [blips]);
       minisearch.removeAll();
       minisearch.addAll(blips);
@@ -38,16 +39,12 @@ export const useBlip = (searchParams: SearchParams = {}): [Blip[], Blip[]] => {
 
   let filteredBlips = blips;
   if (blips && searchParams.term) {
-    console.log(
-      "searching for: " + searchParams.term + "..." + minisearch.documentCount
-    );
     const results = minisearch.search(searchParams.term, {
       fuzzy: 0.2,
       prefix: true,
     });
 
     filteredBlips = results.map((result) => {
-      console.log("result: ", result);
       const blip = blips.find((blip) => blip.slug === result.id);
       return blip;
     });
@@ -64,29 +61,3 @@ export const useBlip = (searchParams: SearchParams = {}): [Blip[], Blip[]] => {
 
   return [blips, filteredBlips];
 };
-
-const getBlipNames = async () => {
-  const markdownFilePaths = require
-    .context(`../content/blips`, false, /\.md$/)
-    .keys()
-    .map((relativePath) => relativePath.substring(2));
-  const halfLen = markdownFilePaths.length / 2;
-  markdownFilePaths.splice(halfLen, halfLen);
-  return markdownFilePaths.map((path) => path.split(".")[0]);
-};
-
-function importBlip(): Promise<Blip[]>;
-function importBlip(name: string): Promise<Blip>;
-async function importBlip(name?: string): Promise<Blip | Blip[] | undefined> {
-  if (name) {
-    const blip = await import(`../${blipsPath}/${name}.md`);
-    if (!blip) return undefined;
-    return {
-      ...blip.attributes,
-      slug: name,
-    };
-  } else {
-    const fileNames = await getBlipNames();
-    return Promise.all(fileNames.map(importBlip));
-  }
-}

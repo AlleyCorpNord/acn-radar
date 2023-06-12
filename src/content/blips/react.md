@@ -7,6 +7,8 @@ opinion: >
   Meh, it's alright
 ring: adopt
 quadrant: languages-and-frameworks
-license: none
-projects: ["Ensage", "Podsie", "Rogo"]
+businessModel: open-source
+projectIds: 
+  - mixo
+  - podsie
 ---

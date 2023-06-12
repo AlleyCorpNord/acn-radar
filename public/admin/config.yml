@@ -46,10 +46,22 @@ collections:
               { label: "tools", value: "Tools" },
             ],
         }
-      - { label: "License", name: "license", widget: "text" }
+      - {
+          label: "Business Model",
+          name: "business-model",
+          widget: "select",
+          options:
+            [
+              { label: "Open Source", value: "open-source" },
+              { label: "Free Tier", value: "free-tier" },
+              { label: "Start Up program", value: "start-up-program" },
+              { label: "SaaS", value: "saas" },
+              { label: "On Premise", value: "on-premise" },
+            ],
+        }
       - {
           label: "Projects",
-          name: "projects",
+          name: "projectIds",
           widget: "relation",
           collection: "projects",
           multiple: true,
