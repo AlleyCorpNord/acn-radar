@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { SearchParams, useBlip } from "../hooks/useBlip";
+import { SearchParams, useBlip } from "../../hooks/useBlip";
 import {
   createStyles,
   Button,
@@ -15,13 +15,20 @@ import {
 } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 import { FC, useEffect, useState } from "react";
-import { Blip, Quadrants, Rings, allQuadrants, allRings } from "../types/Blip";
+import {
+  Blip,
+  Quadrants,
+  Rings,
+  allQuadrants,
+  allRings,
+} from "../../types/Blip";
 import { useDisclosure } from "@mantine/hooks";
-import { BlipDetails } from "../components/BlipDetails";
-import useProject from "../hooks/useProject";
-import Project from "../types/Project";
+import { BlipDetails } from "../../components/BlipDetails";
+import useProject from "../../hooks/useProject";
+import Project from "../../types/Project";
 import DOMPurify from "dompurify";
 import { marked } from "marked";
+import { useRouter } from "next/router";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -33,7 +40,7 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-const Home = () => {
+export const Home = () => {
   const [selectedBlip, setSelectedBlip] = useState<Blip | null>();
   const [opened, { open, close }] = useDisclosure(false);
   const [searchParams, setSearchParams] = useState<SearchParams>({});
@@ -42,20 +49,23 @@ const Home = () => {
   const sortedProjects = projects.sort((a, b) =>
     a.title.localeCompare(b.title)
   );
+  const router = useRouter();
+  const selectedSlug = router.query.slug?.[0];
 
-  const fragment = typeof window !== "undefined" ? window?.location.hash : null;
-  if (fragment) {
-    const blip = blips.find((blip) => blip.slug === fragment.slice(1));
-    if (blip !== selectedBlip) setSelectedBlip(blip);
+  if (selectedSlug) {
+    const blip = blips.find((blip) => blip.slug === selectedSlug);
+    if (blip && blip !== selectedBlip) setSelectedBlip(blip);
   }
 
   const removeFragment = () => {
-    window.location.replace("#");
-    history.replaceState({}, "", window.location.href.slice(0, -1));
+    router.replace(router.pathname, "", { shallow: true });
   };
 
   useEffect(() => {
-    if (selectedBlip) open();
+    if (selectedBlip) {
+      open();
+      router.replace(router.pathname, selectedBlip.slug, { shallow: true });
+    }
   }, [selectedBlip]);
 
   filteredBlips.forEach((element) => {
@@ -91,12 +101,7 @@ const Home = () => {
           onChange={setSearchParams}
         />
         <Space h="lg" />
-        <BlipsTable
-          blips={filteredBlips}
-          onClick={(blip) => {
-            setSelectedBlip(blip);
-          }}
-        />
+        <BlipsTable blips={filteredBlips} onClick={setSelectedBlip} />
         {filteredBlips.length === 0 && (
           <Text mt="lg" align="center">
             No blips found
@@ -118,8 +123,6 @@ const SearchBar: FC<SearchBarProps> = ({
   searchParams,
   onChange,
 }) => {
-  const { classes } = useStyles();
-
   const quadrantData = allQuadrants.map((quadrant) => ({
     value: quadrant,
     label: Quadrants[quadrant],
@@ -153,9 +156,7 @@ const SearchBar: FC<SearchBarProps> = ({
           clearable={true}
           data={quadrantData}
           value={searchParams.quadrant}
-          onChange={(value) =>
-            onChange({ ...searchParams, quadrant: value as string })
-          }
+          onChange={(value) => onChange({ ...searchParams, quadrant: value })}
         />
       </Grid.Col>
       <Grid.Col span={"content"}>
@@ -165,9 +166,7 @@ const SearchBar: FC<SearchBarProps> = ({
           clearable={true}
           data={ringData}
           value={searchParams.ring}
-          onChange={(value) =>
-            onChange({ ...searchParams, ring: value as string })
-          }
+          onChange={(value) => onChange({ ...searchParams, ring: value })}
         />
       </Grid.Col>
       <Grid.Col span="content">
@@ -180,9 +179,7 @@ const SearchBar: FC<SearchBarProps> = ({
             label: project.title,
           }))}
           value={searchParams.project}
-          onChange={(value) =>
-            onChange({ ...searchParams, project: value as string })
-          }
+          onChange={(value) => onChange({ ...searchParams, project: value })}
         />
       </Grid.Col>
     </Grid>

@@ -7,8 +7,8 @@ media_folder: public/img
 public_folder: img
 publish_mode: editorial_workflow
 collections:
-  - label: "Blips"
-    name: "blips"
+  - label: "Blip"
+    name: "blip"
     folder: "src/content/blips"
     slug: "{{slug}}"
     create: true
@@ -69,8 +69,8 @@ collections:
           display_fields: ["{{title}}"],
           search_fields: ["title"],
         }
-  - label: "Projects"
-    name: "projects"
+  - label: "Project"
+    name: "project"
     folder: "src/content/projects"
     slug: "{{slug}}"
     create: true

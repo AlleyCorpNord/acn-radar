@@ -19,7 +19,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/index.tsx",
     "next.config.mjs",
     "next.config.mts"
   ],
