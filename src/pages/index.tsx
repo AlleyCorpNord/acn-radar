@@ -10,6 +10,8 @@ import {
   Header,
   Text,
   Drawer,
+  Grid,
+  Space,
 } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 import { FC, useEffect, useState } from "react";
@@ -18,6 +20,8 @@ import { useDisclosure } from "@mantine/hooks";
 import { BlipDetails } from "../components/BlipDetails";
 import useProject from "../hooks/useProject";
 import Project from "../types/Project";
+import DOMPurify from "dompurify";
+import { marked } from "marked";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -26,23 +30,6 @@ const useStyles = createStyles(() => ({
     alignItems: "center",
     height: "100%",
     margin: "0 auto",
-  },
-
-  searchBar: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
-    padding: 0,
-    gap: "10px",
-    marginBottom: "40px",
-
-    "& > *": {
-      flexGrow: 1,
-    },
-  },
-
-  select: {
-    maxWidth: "180px",
   },
 }));
 
@@ -67,7 +54,6 @@ const Home = () => {
     history.replaceState({}, "", window.location.href.slice(0, -1));
   };
 
-  console.log(filteredBlips);
   useEffect(() => {
     if (selectedBlip) open();
   }, [selectedBlip]);
@@ -104,12 +90,18 @@ const Home = () => {
           searchParams={searchParams}
           onChange={setSearchParams}
         />
+        <Space h="lg" />
         <BlipsTable
           blips={filteredBlips}
           onClick={(blip) => {
             setSelectedBlip(blip);
           }}
         />
+        {filteredBlips.length === 0 && (
+          <Text mt="lg" align="center">
+            No blips found
+          </Text>
+        )}
       </Container>
     </div>
   );
@@ -139,56 +131,61 @@ const SearchBar: FC<SearchBarProps> = ({
   }));
 
   return (
-    <Container className={classes.searchBar}>
-      <TextInput
-        icon={<Search size="1.1rem" />}
-        radius="md"
-        size="sm"
-        placeholder="Search"
-        rightSectionWidth={42}
-        value={searchParams.term ?? ""}
-        onChange={(event) =>
-          onChange({ ...searchParams, term: event.currentTarget.value })
-        }
-      />
+    <Grid>
+      <Grid.Col span="auto">
+        <TextInput
+          icon={<Search size="1.1rem" />}
+          radius="md"
+          size="sm"
+          placeholder="Search"
+          rightSectionWidth={42}
+          value={searchParams.term ?? ""}
+          onChange={(event) =>
+            onChange({ ...searchParams, term: event.currentTarget.value })
+          }
+        />
+      </Grid.Col>
 
-      <Select
-        className={classes.select}
-        placeholder="Quadrant"
-        radius="md"
-        clearable={true}
-        data={quadrantData}
-        value={searchParams.quadrant}
-        onChange={(value) =>
-          onChange({ ...searchParams, quadrant: value as string })
-        }
-      />
-      <Select
-        className={classes.select}
-        placeholder="Ring"
-        radius="md"
-        clearable={true}
-        data={ringData}
-        value={searchParams.ring}
-        onChange={(value) =>
-          onChange({ ...searchParams, ring: value as string })
-        }
-      />
-      <Select
-        className={classes.select}
-        placeholder="Project"
-        clearable={true}
-        radius="md"
-        data={projects.map((project) => ({
-          value: project.slug,
-          label: project.title,
-        }))}
-        value={searchParams.project}
-        onChange={(value) =>
-          onChange({ ...searchParams, project: value as string })
-        }
-      />
-    </Container>
+      <Grid.Col span="content">
+        <Select
+          placeholder="Quadrant"
+          radius="md"
+          clearable={true}
+          data={quadrantData}
+          value={searchParams.quadrant}
+          onChange={(value) =>
+            onChange({ ...searchParams, quadrant: value as string })
+          }
+        />
+      </Grid.Col>
+      <Grid.Col span={"content"}>
+        <Select
+          placeholder="Ring"
+          radius="md"
+          clearable={true}
+          data={ringData}
+          value={searchParams.ring}
+          onChange={(value) =>
+            onChange({ ...searchParams, ring: value as string })
+          }
+        />
+      </Grid.Col>
+      <Grid.Col span="content">
+        <Select
+          placeholder="Project"
+          clearable={true}
+          radius="md"
+          data={projects.map((project) => ({
+            value: project.slug,
+            label: project.title,
+          }))}
+          value={searchParams.project}
+          onChange={(value) =>
+            onChange({ ...searchParams, project: value as string })
+          }
+        />
+      </Grid.Col>
+    </Grid>
   );
 };
 
@@ -238,7 +235,14 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
           >
             <td>{blip.title}</td>
             <td style={{ maxWidth: "220px" }}>
-              <Text lineClamp={2}>{blip.description}</Text>
+              <Text lineClamp={2}>
+                <div
+                  style={{ marginTop: "-16px", marginBottom: "-16px" }}
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(marked(blip.description)),
+                  }}
+                />
+              </Text>
             </td>
             <td>{Quadrants[blip.quadrant]}</td>
             <td>{Rings[blip.ring]}</td>

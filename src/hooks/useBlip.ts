@@ -54,7 +54,10 @@ export const useBlip = (searchParams: SearchParams = {}): [Blip[], Blip[]] => {
     if (searchParams.quadrant && blip.quadrant !== searchParams.quadrant)
       return false;
     if (searchParams.ring && blip.ring !== searchParams.ring) return false;
-    if (searchParams.project && !blip.projects?.includes(searchParams.project))
+    if (
+      searchParams.project &&
+      !blip.projectIds?.includes(searchParams.project)
+    )
       return false;
     return true;
   });
