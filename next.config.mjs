@@ -1,8 +1,5 @@
-export function webpack(cfg) {
-  cfg.module.rules.push({
-    test: /\.md$/,
-    loader: "frontmatter-markdown-loader",
-    options: { mode: ["react-component"] },
-  });
-  return cfg;
+export function webpack(config) {
+  config.externals = [...config.externals, "canvas", "jsdom"];
+
+  return config;
 }

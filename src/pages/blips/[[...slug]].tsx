@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { SearchParams, useBlip } from "../../hooks/useBlip";
+import { SearchParams, useBlipsFilter } from "../../hooks/useBlipsFilter";
 import {
   createStyles,
   Button,
@@ -24,11 +24,11 @@ import {
 } from "../../types/Blip";
 import { useDisclosure } from "@mantine/hooks";
 import { BlipDetails } from "../../components/BlipDetails";
-import useProject from "../../hooks/useProject";
 import Project from "../../types/Project";
-import DOMPurify from "dompurify";
 import { marked } from "marked";
 import { useRouter } from "next/router";
+import { GetStaticPaths, GetStaticPropsResult } from "next";
+import { importContent } from "../../helpers/DocumentLoading";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -40,12 +40,16 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-export const Home = () => {
+interface BlipsHomeProps {
+  blips: Blip[];
+  projects: Project[];
+}
+
+export const BlipsHome: FC<BlipsHomeProps> = ({ blips, projects }) => {
   const [selectedBlip, setSelectedBlip] = useState<Blip | null>();
   const [opened, { open, close }] = useDisclosure(false);
   const [searchParams, setSearchParams] = useState<SearchParams>({});
-  const [blips, filteredBlips] = useBlip(searchParams);
-  const projects = useProject();
+  const filteredBlips = useBlipsFilter(blips, searchParams);
   const sortedProjects = projects.sort((a, b) =>
     a.title.localeCompare(b.title)
   );
@@ -236,7 +240,7 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
                 <div
                   style={{ marginTop: "-16px", marginBottom: "-16px" }}
                   dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(marked(blip.description)),
+                    __html: marked(blip.description),
                   }}
                 />
               </Text>
@@ -251,4 +255,26 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
   );
 };
 
-export default Home;
+export default BlipsHome;
+
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<BlipsHomeProps>
+> {
+  const blips = await importContent<Blip>("blips");
+  const projects = await importContent<Project>("projects");
+
+  return { props: { blips, projects } };
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [
+      {
+        params: {
+          slug: [],
+        },
+      },
+    ],
+    fallback: true,
+  };
+};

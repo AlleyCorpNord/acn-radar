@@ -1,9 +1,5 @@
-import { useEffect, useState } from "react";
 import { Blip } from "../types/Blip";
 import MiniSearch from "minisearch";
-import { CollectionType, importContent } from "../helpers/DocumentFetching";
-
-const blipCollection: CollectionType = "blips";
 
 /*
  * Parameters that can be used to filter blips.
@@ -21,23 +17,14 @@ let minisearch = new MiniSearch({
   storeFields: ["title", "description", "license"],
 });
 
-/**
- * This hook returns a list of all blips and a filtered list of blips based on the search parameters.
- * @param {SearchParams} searchParams - The search parameters to filter the blips by.
- * @returns {[Blip[], Blip[]]} - A tuple containing the list of all blips and the filtered list of blips.
- */
-export const useBlip = (searchParams: SearchParams = {}): [Blip[], Blip[]] => {
-  const [blips, setBlips] = useState<Blip[]>([]);
-
-  useEffect(() => {
-    importContent<Blip>(blipCollection).then((blips) => {
-      setBlips(Array.isArray(blips) ? blips : [blips]);
-      minisearch.removeAll();
-      minisearch.addAll(blips);
-    });
-  }, []);
-
+export const useBlipsFilter = (
+  blips: Blip[],
+  searchParams: SearchParams
+): Blip[] => {
   let filteredBlips = blips;
+  minisearch.removeAll();
+  minisearch.addAll(blips);
+
   if (blips && searchParams.term) {
     const results = minisearch.search(searchParams.term, {
       fuzzy: 0.2,
@@ -62,5 +49,5 @@ export const useBlip = (searchParams: SearchParams = {}): [Blip[], Blip[]] => {
     return true;
   });
 
-  return [blips, filteredBlips];
+  return filteredBlips;
 };
