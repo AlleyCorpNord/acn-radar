@@ -1,34 +1,35 @@
-name: Deploy to GitHub Pages
+name: Node.js CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: https://alleycorpnord.github.io/acn-radar/
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: "19"
+          node-version: 19
+          cache: npm
 
-      - name: Install dependencies
-        run: npm install
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+          touch out/.nojekyll
 
-      - name: Build Next.js application
-        run: npm run build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        id: deployment
+      - name: Deploy
+        # https://github.com/JamesIves/github-pages-deploy-action
+        uses: JamesIves/github-pages-deploy-action@4.4.0
         with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: out
