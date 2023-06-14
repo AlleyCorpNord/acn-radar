@@ -29,6 +29,7 @@ import { marked } from "marked";
 import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticPropsResult } from "next";
 import { importContent } from "../../helpers/DocumentLoading";
+import { CMSUrl } from "../../types/Constants";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -200,7 +201,7 @@ function HomeHeader() {
         <Button
           component="a"
           target="_blank"
-          href="http://localhost:3000/admin/index.html#/collections/blips/new"
+          href={`${CMSUrl}/collections/blips/new`}
           size="xs"
         >
           Add Blip
@@ -275,6 +276,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
       },
     ],
-    fallback: true,
+    fallback: "blocking",
   };
 };

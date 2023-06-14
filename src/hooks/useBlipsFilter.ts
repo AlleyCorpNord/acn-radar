@@ -21,6 +21,8 @@ export const useBlipsFilter = (
   blips: Blip[],
   searchParams: SearchParams
 ): Blip[] => {
+  if (!blips) return [];
+
   let filteredBlips = blips;
   minisearch.removeAll();
   minisearch.addAll(blips);

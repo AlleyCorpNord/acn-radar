@@ -3,3 +3,9 @@ export function webpack(config) {
 
   return config;
 }
+
+export const basePath = "/acn-radar";
+export const output = "export";
+export const experimental = {
+  appDir: true,
+};

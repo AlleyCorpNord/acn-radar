@@ -13,6 +13,7 @@ import {
   Text,
   Title,
 } from "@mantine/core";
+import { RepositoryUrl } from "../types/Constants";
 
 interface BlipDetailsProps {
   blip: Blip;
@@ -87,7 +88,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
         <Group position="apart">
           <Text>
             <a
-              href={`https://github.com/AlleyCorpNord/acn-radar/tree/redesign/src/content/blips/${blip.slug}.md`}
+              href={`${RepositoryUrl}/src/content/blips/${blip.slug}.md`}
               target="_blank"
             >
               Show in GitHub
@@ -95,7 +96,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
           </Text>
           <Button
             component="a"
-            href="http://localhost:3000/admin/index.html#/collections/blips/entries/medplum"
+            href={`${RepositoryUrl}/collections/blips/entries/${blip.slug}`}
             target="_blank"
             color="green"
             size="xs"
