@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: AlleyCorpNord/acn-radar
-  branch: redesign # Branch to update (optional; defaults to master)
+  branch: main # Branch to update (optional; defaults to master)
   auth_endpoint: auth
 media_folder: public/img
 public_folder: img
