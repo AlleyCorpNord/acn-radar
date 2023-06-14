@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: https://alleycorpnord.github.io/
+      url: https://alleycorpnord.github.io/acn-radar/
 
     steps:
       - name: Checkout repository
