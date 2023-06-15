@@ -8,7 +8,7 @@ export interface Blip {
   license: string;
   ring: keyof typeof Rings;
   quadrant: keyof typeof Quadrants;
-  businessModel: keyof typeof BusinessModel;
+  businessModel: (keyof typeof BusinessModel)[];
   projectIds: string[];
   projects?: Project[];
   slug: string;

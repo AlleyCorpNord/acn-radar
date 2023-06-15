@@ -12,8 +12,11 @@ import {
   Stack,
   Text,
   Title,
+  Badge,
 } from "@mantine/core";
 import { RepositoryUrl } from "../types/Constants";
+import { Edit, Tex } from "tabler-icons-react";
+import { QuadrantAccessory, RingColor } from "../pages/blips/[[...slug]]";
 
 interface BlipDetailsProps {
   blip: Blip;
@@ -25,8 +28,13 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
       <Group position="apart">
         <Title order={1}>{blip.title}</Title>
         <Flex direction="column" align="flex-end">
-          <Text>{Quadrants[blip.quadrant]}</Text>
-          <Text>{Rings[blip.ring]}</Text>
+          <Group spacing="xs">
+            {QuadrantAccessory[blip.quadrant]}
+            {<Text>{Quadrants[blip.quadrant]}</Text>}
+          </Group>
+          <Badge variant="filled" color={RingColor[blip.ring]}>
+            {Rings[blip.ring]}
+          </Badge>
         </Flex>
       </Group>
       {blip.link && (
@@ -78,13 +86,18 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
           </Flex>
         )}
 
-        {blip.businessModel && (
+        {blip.businessModel?.length && (
           <Flex direction="column" gap="sm">
             <Title order={3}>Business Model</Title>
-            <Text>{BusinessModel[blip.businessModel]}</Text>
+            <List withPadding>
+              {blip.businessModel?.map((businessModel) => (
+                <List.Item key={businessModel}>
+                  {BusinessModel[businessModel]}
+                </List.Item>
+              ))}
+            </List>
           </Flex>
         )}
-
         <Group position="apart">
           <Text>
             <a
@@ -98,7 +111,8 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             component="a"
             href={`${RepositoryUrl}/collections/blips/entries/${blip.slug}`}
             target="_blank"
-            color="green"
+            color="light"
+            rightIcon={<Edit size="1.1rem" />}
             size="xs"
           >
             Edit Blip

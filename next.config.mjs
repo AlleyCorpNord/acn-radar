@@ -19,5 +19,5 @@ if (isGithubActions) {
 export default {
   assetPrefix: assetPrefix,
   basePath: basePath,
-  output: "export",
+  // output: "export",
 };

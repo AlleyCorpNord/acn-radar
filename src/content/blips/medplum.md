@@ -6,7 +6,9 @@ opinion: Neither good or bad, much the opposite.
 link: https://www.medplum.com/
 ring: trial
 quadrant: platforms
-businessModel: start-up-program
+businessModel: 
+  - start-up-program
+  - open-source
 projectIds:
   - ensage
 ---

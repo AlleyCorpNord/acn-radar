@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: AlleyCorpNord/acn-radar
-  branch: main # Branch to update (optional; defaults to master)
+  branch: main
   auth_endpoint: auth
 media_folder: public/img
 public_folder: img
@@ -50,6 +50,7 @@ collections:
           label: "Business Model",
           name: "business-model",
           widget: "select",
+          multiple: true,
           options:
             [
               { label: "Open Source", value: "open-source" },

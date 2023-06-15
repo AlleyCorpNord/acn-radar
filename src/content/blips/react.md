@@ -7,7 +7,8 @@ opinion: >
   Meh, it's alright
 ring: adopt
 quadrant: languages-and-frameworks
-businessModel: open-source
+businessModel: 
+  - open-source
 projectIds: 
   - mixo
   - podsie

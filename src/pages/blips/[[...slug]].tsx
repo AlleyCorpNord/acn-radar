@@ -12,9 +12,21 @@ import {
   Drawer,
   Grid,
   Space,
+  Group,
+  Chip,
+  Badge,
 } from "@mantine/core";
-import { Search } from "tabler-icons-react";
-import { FC, useEffect, useState } from "react";
+import {
+  Code,
+  GoGame,
+  HelicopterLanding,
+  Radar,
+  Search,
+  Server,
+  Settings,
+  Tool,
+} from "tabler-icons-react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import {
   Blip,
   Quadrants,
@@ -30,6 +42,9 @@ import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticPropsResult } from "next";
 import { importContent } from "../../helpers/DocumentLoading";
 import { CMSUrl } from "../../types/Constants";
+import Image from "next/image";
+import logo from "../../assets/acn-full-logo.png";
+import { SelectItem } from "../../components/SelectOption";
 
 const useStyles = createStyles(() => ({
   header: {
@@ -131,6 +146,7 @@ const SearchBar: FC<SearchBarProps> = ({
   const quadrantData = allQuadrants.map((quadrant) => ({
     value: quadrant,
     label: Quadrants[quadrant],
+    accessory: QuadrantAccessory[quadrant],
   }));
 
   const ringData = allRings.map((ring) => ({
@@ -159,6 +175,7 @@ const SearchBar: FC<SearchBarProps> = ({
           placeholder="Quadrant"
           radius="md"
           clearable={true}
+          itemComponent={SelectItem}
           data={quadrantData}
           value={searchParams.quadrant}
           onChange={(value) => onChange({ ...searchParams, quadrant: value })}
@@ -197,10 +214,14 @@ function HomeHeader() {
   return (
     <Header height={60} mb="lg">
       <Container className={classes.header}>
-        <div>ACN Radar</div>
+        <div>
+          <Image src={logo} height={35} alt="AlleyCorp Nord Logo" />
+        </div>
         <Button
+          color="brand"
           component="a"
           target="_blank"
+          rightIcon={<Radar size="1.1rem" />}
           href={`${CMSUrl}/collections/blips/new`}
           size="xs"
         >
@@ -232,7 +253,7 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
         {blips.map((blip) => (
           <tr
             key={blip.title}
-            onClick={() => onClick(blip)}
+            onClick={() => onClick?.(blip)}
             style={{ cursor: "pointer" }}
           >
             <td>{blip.title}</td>
@@ -246,8 +267,20 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
                 />
               </Text>
             </td>
-            <td>{Quadrants[blip.quadrant]}</td>
-            <td>{Rings[blip.ring]}</td>
+            <td>
+              {
+                <Group spacing="xs">
+                  {QuadrantAccessory[blip.quadrant]} {Quadrants[blip.quadrant]}
+                </Group>
+              }
+            </td>
+            <td>
+              {
+                <Badge variant="filled" color={RingColor[blip.ring]}>
+                  {Rings[blip.ring]}
+                </Badge>
+              }
+            </td>
             <td>{blip.projects?.map((project) => project.title).join(", ")}</td>
           </tr>
         ))}
@@ -278,4 +311,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
     ],
     fallback: "blocking",
   };
+};
+
+export const QuadrantAccessory: Record<keyof typeof Quadrants, ReactNode> = {
+  tools: <Tool size="1.2rem" />,
+  platforms: <HelicopterLanding size="1.2rem" />,
+  "languages-and-frameworks": <Code size="1.2rem" />,
+  techniques: <GoGame size="1.2rem" />,
+};
+
+export const RingColor: Record<keyof typeof Rings, string> = {
+  adopt: "green",
+  trial: "violet",
+  assess: "gray",
+  hold: "red",
 };

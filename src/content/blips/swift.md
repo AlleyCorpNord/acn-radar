@@ -5,7 +5,8 @@ opinion: It's great 👌
 link: https://swift.org
 ring: adopt
 quadrant: languages-and-frameworks
-businessModel: open-source
+businessModel: 
+  - open-source
 projectIds:
   - mixo
 ---

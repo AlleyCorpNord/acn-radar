@@ -1,4 +1,4 @@
-import { Container, Group, Text, Title } from "@mantine/core";
+import { Container, Group, MantineProvider, Text, Title } from "@mantine/core";
 import Link from "next/link";
 
 const Home = () => {
