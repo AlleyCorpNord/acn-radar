@@ -5,10 +5,10 @@ import MiniSearch from "minisearch";
  * Parameters that can be used to filter blips.
  */
 export interface SearchParams {
-  term?: string;
-  quadrant?: string;
-  ring?: string;
-  project?: string;
+  term?: string | null;
+  quadrant?: string | null;
+  ring?: string | null;
+  project?: string | null;
 }
 
 let minisearch = new MiniSearch({
@@ -33,10 +33,9 @@ export const useBlipsFilter = (
       prefix: true,
     });
 
-    filteredBlips = results.map((result) => {
-      const blip = blips.find((blip) => blip.slug === result.id);
-      return blip;
-    });
+    filteredBlips = results
+      .map((result) => blips.find((blip) => blip.slug === result.id))
+      .filter((blip) => blip !== undefined && blip !== null) as Blip[];
   }
 
   filteredBlips = filteredBlips.filter((blip) => {

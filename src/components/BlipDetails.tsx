@@ -2,6 +2,7 @@ import React, { type FC } from "react";
 import { Blip, BusinessModel, Quadrants, Rings } from "../types/Blip";
 import DOMPurify from "dompurify";
 import { marked } from "marked";
+import { mangle } from "marked-mangle";
 import {
   Button,
   Container,
@@ -15,8 +16,10 @@ import {
   Badge,
 } from "@mantine/core";
 import { CMSUrl, RepositoryUrl } from "../types/Constants";
-import { Edit, Tex } from "tabler-icons-react";
+import { Edit } from "tabler-icons-react";
 import { QuadrantAccessory, RingColor } from "../pages/blips/[[...slug]]";
+
+marked.use(mangle());
 
 interface BlipDetailsProps {
   blip: Blip;

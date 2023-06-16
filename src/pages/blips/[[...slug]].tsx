@@ -14,6 +14,7 @@ import {
   Space,
   Group,
   Badge,
+  Title,
 } from "@mantine/core";
 import {
   Code,
@@ -35,6 +36,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { BlipDetails } from "../../components/BlipDetails";
 import Project from "../../types/Project";
 import { marked } from "marked";
+import { mangle } from "marked-mangle";
 import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticPropsResult } from "next";
 import { importContent } from "../../helpers/DocumentLoading";
@@ -42,6 +44,10 @@ import { CMSUrl } from "../../types/Constants";
 import Image from "next/image";
 import logo from "../../assets/acn-full-logo.png";
 import { SelectItem } from "../../components/SelectOption";
+import { BadgeSelectItem } from "../../components/BadgeSelectOption";
+
+marked.setOptions({ headerIds: false });
+marked.use(mangle());
 
 const useStyles = createStyles(() => ({
   header: {
@@ -149,10 +155,11 @@ const SearchBar: FC<SearchBarProps> = ({
   const ringData = allRings.map((ring) => ({
     value: ring,
     label: Rings[ring],
+    color: RingColor[ring],
   }));
 
   return (
-    <Grid>
+    <Grid columns={24}>
       <Grid.Col span="auto">
         <TextInput
           icon={<Search size="1.1rem" />}
@@ -167,7 +174,7 @@ const SearchBar: FC<SearchBarProps> = ({
         />
       </Grid.Col>
 
-      <Grid.Col span="content">
+      <Grid.Col span={8}>
         <Select
           placeholder="Quadrant"
           radius="md"
@@ -178,17 +185,18 @@ const SearchBar: FC<SearchBarProps> = ({
           onChange={(value) => onChange({ ...searchParams, quadrant: value })}
         />
       </Grid.Col>
-      <Grid.Col span={"content"}>
+      <Grid.Col span={4}>
         <Select
           placeholder="Ring"
           radius="md"
           clearable={true}
+          itemComponent={BadgeSelectItem}
           data={ringData}
           value={searchParams.ring}
           onChange={(value) => onChange({ ...searchParams, ring: value })}
         />
       </Grid.Col>
-      <Grid.Col span="content">
+      <Grid.Col span={4}>
         <Select
           placeholder="Project"
           clearable={true}
@@ -212,7 +220,12 @@ function HomeHeader() {
     <Header height={60} mb="lg">
       <Container className={classes.header}>
         <div>
-          <Image src={logo} height={35} alt="AlleyCorp Nord Logo" />
+          <Group>
+            <Image src={logo} height={35} alt="AlleyCorp Nord Logo" />
+            <Title color="brand" order={3}>
+              Tech Radar
+            </Title>
+          </Group>
         </div>
         <Button
           color="brand"
