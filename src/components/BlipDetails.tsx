@@ -14,7 +14,7 @@ import {
   Title,
   Badge,
 } from "@mantine/core";
-import { RepositoryUrl } from "../types/Constants";
+import { CMSUrl, RepositoryUrl } from "../types/Constants";
 import { Edit, Tex } from "tabler-icons-react";
 import { QuadrantAccessory, RingColor } from "../pages/blips/[[...slug]]";
 
@@ -109,7 +109,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
           </Text>
           <Button
             component="a"
-            href={`${RepositoryUrl}/collections/blips/entries/${blip.slug}`}
+            href={`${CMSUrl}/collections/blip/entries/${blip.slug}`}
             target="_blank"
             color="light"
             rightIcon={<Edit size="1.1rem" />}
