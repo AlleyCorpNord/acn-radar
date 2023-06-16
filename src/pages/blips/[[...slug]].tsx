@@ -13,7 +13,6 @@ import {
   Grid,
   Space,
   Group,
-  Chip,
   Badge,
 } from "@mantine/core";
 import {
@@ -22,8 +21,6 @@ import {
   HelicopterLanding,
   Radar,
   Search,
-  Server,
-  Settings,
   Tool,
 } from "tabler-icons-react";
 import { FC, ReactNode, useEffect, useState } from "react";
@@ -222,7 +219,7 @@ function HomeHeader() {
           component="a"
           target="_blank"
           rightIcon={<Radar size="1.1rem" />}
-          href={`${CMSUrl}/collections/blips/new`}
+          href={`${CMSUrl}/collections/blip/new`}
           size="xs"
         >
           Add Blip
