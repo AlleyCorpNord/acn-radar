@@ -33,10 +33,9 @@ export const useBlipsFilter = (
       prefix: true,
     });
 
-    filteredBlips = results.map((result) => {
-      const blip = blips.find((blip) => blip.slug === result.id);
-      return blip;
-    });
+    filteredBlips = results
+      .map((result) => blips.find((blip) => blip.slug === result.id))
+      .filter((blip) => blip !== undefined && blip !== null) as Blip[];
   }
 
   filteredBlips = filteredBlips.filter((blip) => {

@@ -1,4 +1,4 @@
-import { Group, Avatar, Text } from "@mantine/core";
+import { Group, Text } from "@mantine/core";
 import { ReactNode, forwardRef } from "react";
 
 interface ItemProps extends React.ComponentPropsWithoutRef<"div"> {

@@ -1,23 +1,14 @@
-import { Container, Group, MantineProvider, Text, Title } from "@mantine/core";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const Home = () => {
-  redirect("/blips");
+  const { push } = useRouter();
 
-  return (
-    <Container>
-      <Title>Home</Title>
-      <Group>
-        <Link href={"/blips"}>
-          <Text>Blips</Text>
-        </Link>
-        <Link href="/projects">
-          <Text>Projects</Text>
-        </Link>
-      </Group>
-    </Container>
-  );
+  useEffect(() => {
+    push("/blips");
+  }, []);
+
+  return null;
 };
 
 export default Home;
