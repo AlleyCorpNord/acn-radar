@@ -5,10 +5,10 @@ import MiniSearch from "minisearch";
  * Parameters that can be used to filter blips.
  */
 export interface SearchParams {
-  term?: string;
-  quadrant?: string;
-  ring?: string;
-  project?: string;
+  term?: string | null;
+  quadrant?: string | null;
+  ring?: string | null;
+  project?: string | null;
 }
 
 let minisearch = new MiniSearch({

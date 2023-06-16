@@ -182,9 +182,7 @@ const SearchBar: FC<SearchBarProps> = ({
           itemComponent={SelectItem}
           data={quadrantData}
           value={searchParams.quadrant}
-          onChange={(value) =>
-            onChange({ ...searchParams, quadrant: value || undefined })
-          }
+          onChange={(value) => onChange({ ...searchParams, quadrant: value })}
         />
       </Grid.Col>
       <Grid.Col span={4}>
@@ -195,9 +193,7 @@ const SearchBar: FC<SearchBarProps> = ({
           itemComponent={BadgeSelectItem}
           data={ringData}
           value={searchParams.ring}
-          onChange={(value) =>
-            onChange({ ...searchParams, ring: value || undefined })
-          }
+          onChange={(value) => onChange({ ...searchParams, ring: value })}
         />
       </Grid.Col>
       <Grid.Col span={4}>
@@ -210,9 +206,7 @@ const SearchBar: FC<SearchBarProps> = ({
             label: project.title,
           }))}
           value={searchParams.project}
-          onChange={(value) =>
-            onChange({ ...searchParams, project: value || undefined })
-          }
+          onChange={(value) => onChange({ ...searchParams, project: value })}
         />
       </Grid.Col>
     </Grid>
