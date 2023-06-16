@@ -36,6 +36,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { BlipDetails } from "../../components/BlipDetails";
 import Project from "../../types/Project";
 import { marked } from "marked";
+import { mangle } from "marked-mangle";
 import { useRouter } from "next/router";
 import { GetStaticPaths, GetStaticPropsResult } from "next";
 import { importContent } from "../../helpers/DocumentLoading";
@@ -44,6 +45,9 @@ import Image from "next/image";
 import logo from "../../assets/acn-full-logo.png";
 import { SelectItem } from "../../components/SelectOption";
 import { BadgeSelectItem } from "../../components/BadgeSelectOption";
+
+marked.setOptions({ headerIds: false });
+marked.use(mangle());
 
 const useStyles = createStyles(() => ({
   header: {
