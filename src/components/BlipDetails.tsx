@@ -14,8 +14,6 @@ import {
   Text,
   Title,
   Badge,
-  Affix,
-  rem,
 } from "@mantine/core";
 import { CMSUrl, RepositoryUrl } from "../types/Constants";
 import { Edit } from "tabler-icons-react";
@@ -30,7 +28,7 @@ interface BlipDetailsProps {
 export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
   return (
     <Container style={{ height: "100%" }}>
-      <Stack style={{ height: "100%" }}>
+      <Flex direction="column" style={{ height: "100%" }}>
         <Group position="apart" style={{ marginBottom: 6 }}>
           <Title order={1}>{blip.title}</Title>
           <Flex direction="column" align="flex-end" gap="xs">
@@ -51,7 +49,6 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
           </Text>
         )}
         <Space h="md" />
-        {/* <Stack spacing="xl" style={{ flexGrow: 1 }}> */}
         {blip.description && (
           <Flex direction="column" gap="sm">
             <Title order={3}>Description</Title>
@@ -124,8 +121,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             </Button>
           </Group>
         </Stack>
-        {/* </Stack> */}
-      </Stack>
+      </Flex>
     </Container>
   );
 };
