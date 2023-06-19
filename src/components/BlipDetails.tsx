@@ -14,6 +14,8 @@ import {
   Text,
   Title,
   Badge,
+  Affix,
+  rem,
 } from "@mantine/core";
 import { CMSUrl, RepositoryUrl } from "../types/Constants";
 import { Edit } from "tabler-icons-react";
@@ -27,29 +29,29 @@ interface BlipDetailsProps {
 
 export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
   return (
-    <Container>
-      <Group position="apart">
-        <Title order={1}>{blip.title}</Title>
-        <Flex direction="column" align="flex-end">
-          <Group spacing="xs">
-            {QuadrantAccessory[blip.quadrant]}
-            {<Text>{Quadrants[blip.quadrant]}</Text>}
-          </Group>
-          <Badge variant="filled" color={RingColor[blip.ring]}>
-            {Rings[blip.ring]}
-          </Badge>
-        </Flex>
-      </Group>
-      {blip.link && (
-        <Text>
-          <a href={blip.link} target="_blank">
-            {blip.link}
-          </a>
-        </Text>
-      )}
-
-      <Space h="md" />
-      <Stack spacing="xl">
+    <Container style={{ height: "100%" }}>
+      <Stack style={{ height: "100%" }}>
+        <Group position="apart" style={{ marginBottom: 6 }}>
+          <Title order={1}>{blip.title}</Title>
+          <Flex direction="column" align="flex-end" gap="xs">
+            <Group spacing="xs">
+              {QuadrantAccessory[blip.quadrant]}
+              {<Text>{Quadrants[blip.quadrant]}</Text>}
+            </Group>
+            <Badge variant="filled" color={RingColor[blip.ring]}>
+              {Rings[blip.ring]}
+            </Badge>
+          </Flex>
+        </Group>
+        {blip.link && (
+          <Text>
+            <a href={blip.link} target="_blank">
+              {blip.link}
+            </a>
+          </Text>
+        )}
+        <Space h="md" />
+        {/* <Stack spacing="xl" style={{ flexGrow: 1 }}> */}
         {blip.description && (
           <Flex direction="column" gap="sm">
             <Title order={3}>Description</Title>
@@ -63,7 +65,6 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             </Text>
           </Flex>
         )}
-
         {blip.opinion && (
           <Flex direction="column" gap="sm">
             <Title order={3}>Opinion</Title>
@@ -101,26 +102,29 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             </List>
           </Flex>
         )}
-        <Group position="apart">
-          <Text>
-            <a
-              href={`${RepositoryUrl}/src/content/blips/${blip.slug}.md`}
+        <Stack justify="flex-end" style={{ flexGrow: 1, paddingBottom: 70 }}>
+          <Group position="apart">
+            <Text>
+              <a
+                href={`${RepositoryUrl}/src/content/blips/${blip.slug}.md`}
+                target="_blank"
+              >
+                Show in GitHub
+              </a>
+            </Text>
+            <Button
+              component="a"
+              href={`${CMSUrl}/collections/blip/entries/${blip.slug}`}
               target="_blank"
+              color="light"
+              rightIcon={<Edit size="1.1rem" />}
+              size="xs"
             >
-              Show in GitHub
-            </a>
-          </Text>
-          <Button
-            component="a"
-            href={`${CMSUrl}/collections/blip/entries/${blip.slug}`}
-            target="_blank"
-            color="light"
-            rightIcon={<Edit size="1.1rem" />}
-            size="xs"
-          >
-            Edit Blip
-          </Button>
-        </Group>
+              Edit Blip
+            </Button>
+          </Group>
+        </Stack>
+        {/* </Stack> */}
       </Stack>
     </Container>
   );

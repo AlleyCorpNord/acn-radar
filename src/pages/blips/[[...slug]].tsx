@@ -103,7 +103,7 @@ export const BlipsHome: FC<BlipsHomeProps> = ({ blips, projects }) => {
         <title>ACN Radar</title>
       </Head>
       <HomeHeader />
-      <Drawer
+      <Drawer.Root
         opened={opened}
         onClose={() => {
           setTimeout(() => {
@@ -113,10 +113,18 @@ export const BlipsHome: FC<BlipsHomeProps> = ({ blips, projects }) => {
           close();
         }}
         position="right"
-        size="lg"
+        size="xl"
       >
-        {selectedBlip && <BlipDetails blip={selectedBlip} />}
-      </Drawer>
+        <Drawer.Overlay blur={4} opacity={0.5} />
+        <Drawer.Content>
+          <Drawer.Header>
+            <Drawer.CloseButton />
+          </Drawer.Header>
+          <Drawer.Body style={{ height: "100%" }}>
+            {selectedBlip && <BlipDetails blip={selectedBlip} />}
+          </Drawer.Body>
+        </Drawer.Content>
+      </Drawer.Root>
       <Container>
         <SearchBar
           projects={sortedProjects}

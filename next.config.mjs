@@ -9,7 +9,7 @@ let basePath = "";
 export default {
   assetPrefix: assetPrefix,
   basePath: basePath,
-  output: "export",
+  // output: "export",
   images: {
     unoptimized: true,
   },
