@@ -75,6 +75,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             </Text>
           </Flex>
         )}
+        <Space h="md" />
 
         {blip.businessModel?.length && (
           <Flex direction="column" gap="sm">
@@ -88,6 +89,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             </List>
           </Flex>
         )}
+        <Space h="md" />
 
         {blip.projects?.length && (
           <Flex direction="column" gap="sm">
