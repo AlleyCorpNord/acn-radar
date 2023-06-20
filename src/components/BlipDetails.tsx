@@ -78,17 +78,6 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
           </Flex>
         )}
 
-        {blip.projects?.length && (
-          <Flex direction="column" gap="sm">
-            <Title order={3}>Projects</Title>
-            <List withPadding>
-              {blip.projects?.map((project) => (
-                <List.Item key={project.slug}>{project.title}</List.Item>
-              ))}
-            </List>
-          </Flex>
-        )}
-
         {blip.businessModel?.length && (
           <Flex direction="column" gap="sm">
             <Title order={3}>Business Model</Title>
@@ -101,6 +90,18 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             </List>
           </Flex>
         )}
+
+        {blip.projects?.length && (
+          <Flex direction="column" gap="sm">
+            <Title order={3}>Projects</Title>
+            <List withPadding>
+              {blip.projects?.map((project) => (
+                <List.Item key={project.slug}>{project.title}</List.Item>
+              ))}
+            </List>
+          </Flex>
+        )}
+
         <Group position="apart">
           <Text>
             <a
