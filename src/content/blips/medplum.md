@@ -4,7 +4,7 @@ description: Medplum is a headless EHR that makes it easier to build healthcare
   apps quickly with less code.
 opinion: >-
   * H﻿eadless [FHIR](https://hl7.org/fhir) server that allows implementation of
-  custom EHR apps quickly on top of it
+  custom EHR apps quickly
 
   * A﻿wesome Authentication & Authorization model that:
 
