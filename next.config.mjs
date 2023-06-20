@@ -6,10 +6,16 @@ export function webpack(config) {
 let assetPrefix = "";
 let basePath = "";
 
+var output = "export";
+
+if (process.env.NODE_ENV !== "production") {
+  output = undefined;
+}
+
 export default {
   assetPrefix: assetPrefix,
   basePath: basePath,
-  output: "export",
+  output,
   images: {
     unoptimized: true,
   },
