@@ -113,7 +113,7 @@ export const BlipsHome: FC<BlipsHomeProps> = ({ blips, projects }) => {
           close();
         }}
         position="right"
-        size="lg"
+        size="xl"
       >
         {selectedBlip && <BlipDetails blip={selectedBlip} />}
       </Drawer>

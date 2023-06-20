@@ -13,8 +13,8 @@ export interface SearchParams {
 
 let minisearch = new MiniSearch({
   idField: "slug",
-  fields: ["title", "description", "license"],
-  storeFields: ["title", "description", "license"],
+  fields: ["title", "description", "opinion", "link"],
+  storeFields: ["title"],
 });
 
 export const useBlipsFilter = (
