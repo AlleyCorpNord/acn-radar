@@ -1,7 +1,8 @@
 interface Project {
   title: string;
-  link: string;
   description: string;
+  link?: string;
+  contacts?: string;
   slug: string;
 }
 

@@ -43,7 +43,7 @@ collections:
               },
               { label: "Techniques", value: "techniques" },
               { label: "Platforms", value: "platforms" },
-              { label: "tools", value: "Tools" },
+              { label: "Tools", value: "tools" },
             ],
         }
       - {
@@ -79,5 +79,17 @@ collections:
       preview: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "markdown" }
-      - { label: "Link", name: "link", widget: "string" }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "markdown",
+          required: false,
+        }
+      - { label: "Link", name: "link", widget: "string", required: false }
+      - {
+          label: "Contacts",
+          name: "contacts",
+          widget: "markdown",
+          required: false,
+          default: " - [Contact Name]"
+        }
