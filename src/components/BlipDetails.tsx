@@ -62,6 +62,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             </Text>
           </Flex>
         )}
+        <Space h="md" />
         {blip.opinion && (
           <Flex direction="column" gap="sm">
             <Title order={3}>Opinion</Title>
