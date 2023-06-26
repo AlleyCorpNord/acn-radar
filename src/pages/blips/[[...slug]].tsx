@@ -42,9 +42,9 @@ import { GetStaticPaths, GetStaticPropsResult } from "next";
 import { importContent } from "../../helpers/DocumentLoading";
 import { CMSUrl } from "../../types/Constants";
 import Image from "next/image";
-import logo from "../../assets/acn-full-logo.png";
 import { SelectItem } from "../../components/SelectOption";
 import { BadgeSelectItem } from "../../components/BadgeSelectOption";
+import { QuadrantAccessory, RingColor } from "../../types/helper";
 
 marked.setOptions({ headerIds: false });
 marked.use(mangle());
@@ -229,7 +229,12 @@ function HomeHeader() {
       <Container className={classes.header}>
         <div>
           <Group>
-            <Image src={logo} height={35} alt="AlleyCorp Nord Logo" />
+            <Image
+              src="/img/acn-full-logo.png"
+              height={35}
+              width={82}
+              alt="AlleyCorp Nord Logo"
+            />
             <Title color="brand" order={3}>
               Tech Radar
             </Title>
@@ -329,18 +334,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
     ],
     fallback: "blocking",
   };
-};
-
-export const QuadrantAccessory: Record<keyof typeof Quadrants, ReactNode> = {
-  tools: <Tool size="1.2rem" />,
-  platforms: <HelicopterLanding size="1.2rem" />,
-  "languages-and-frameworks": <Code size="1.2rem" />,
-  techniques: <GoGame size="1.2rem" />,
-};
-
-export const RingColor: Record<keyof typeof Rings, string> = {
-  adopt: "green",
-  trial: "violet",
-  assess: "gray",
-  hold: "red",
 };
