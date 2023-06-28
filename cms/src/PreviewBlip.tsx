@@ -1,28 +1,53 @@
-import React, { FC } from "react";
+import React, { Component, FC, LegacyRef, createRef, useRef } from "react";
+import ReactDOM from "react-dom";
 import { BlipDetails } from "../../src/components/BlipDetails";
 import { MantineProvider, useMantineTheme } from "@mantine/core";
 
-const REACT_VERSION = React.version;
+class BlipTemplate extends Component {
+  iRef: LegacyRef<HTMLIFrameElement> | undefined;
 
-const FunctionalBlipTemplate: FC<{ props: any }> = (props) => {
-  console.dir("before use theme");
-  const theme = useMantineTheme();
-  console.dir("after use theme");
+  constructor(props) {
+    super(props);
+    this.iRef = createRef();
+    this.state = { blip: props.entry.getIn(["data"]).toJS() };
+  }
 
-  // @ts-ignore
-  const blip = props.entry.getIn(["data"]).toJS();
-  console.dir(blip);
-  console.log("REACT_VERSION", REACT_VERSION);
-  console.log("theme", theme);
+  handleLoad = () => {
+    // @ts-ignore
+    const { entry } = this.props;
+    // @ts-ignore
+    const blip = this.state.blip;
 
-  return (
-    <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
-      <BlipDetails blip={blip} />
-    </MantineProvider>
-  );
-};
+    setTimeout(() => {
+      // @ts-ignore
+      this.iRef?.current?.contentWindow?.postMessage(blip, "*");
+    }, 100);
+  };
 
-export default FunctionalBlipTemplate;
+  render() {
+    // @ts-ignore
+    const blip = this.props.entry.getIn(["data"]).toJS();
+    // @ts-ignore
+    this.iRef?.current?.contentWindow?.postMessage(blip, "*");
+    console.dir(this.props);
+    // @ts-ignore
+
+    const window = this.props.window;
+    console.log(window);
+
+    return (
+      <iframe
+        src={"http://localhost:3000/blips/preview"}
+        width={window.innerWidth}
+        height={window.innerHeight}
+        ref={this.iRef}
+        onLoad={this.handleLoad}
+      />
+    );
+  }
+}
+
+export default BlipTemplate;
 
 // @ts-ignore
-CMS.registerPreviewTemplate("blip", FunctionalBlipTemplate);
+CMS.registerPreviewTemplate("blip", BlipTemplate);
