@@ -6,4 +6,8 @@ description: Rogo empowers your team to uncover data insights – no SQL or
   they need to focus on generating insight, driving decisions, and moving things
   forward.
 link: https://rogodata.com/
+contacts: |-
+  * A﻿lexandre Rimthong
+  * K﻿senia Nadkina
+  * B﻿rock Jenken
 ---
