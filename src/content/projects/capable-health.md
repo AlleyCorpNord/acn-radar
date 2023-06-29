@@ -8,4 +8,5 @@ contacts: |-
   * N﻿athan Gouy
   * Louis Van Craen
   * Ysaël Pépin
+  * R﻿onan Mejecaze
 ---
