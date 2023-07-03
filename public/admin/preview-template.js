@@ -4119,7 +4119,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   RepositoryUrl: () => (/* binding */ RepositoryUrl)
 /* harmony export */ });
 var RepositoryUrl = "https://github.com/AlleyCorpNord/acn-radar/tree/main";
-var BaseUrl = "http://localhost:3000";
+var BaseUrl = "https://radar.alleycorpnord.com";
 var CMSUrl = "".concat(BaseUrl, "/admin/#");
 
 
