@@ -12,9 +12,6 @@ interface BlipsPreviewProps {
 
 const BlipPreview: FC<BlipsPreviewProps> = ({ projects }) => {
   const [data, setData] = useState<Blip | undefined>();
-  console.log("branch:", process.env.BRANCH);
-  console.log("deploy url:", process.env.DEPLOY_URL);
-  console.log("url: ", process.env.URL);
 
   if (data?.projectIds)
     data.projects = projects.filter((p) => data?.projectIds.includes(p.slug));
