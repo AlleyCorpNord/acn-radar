@@ -12,6 +12,7 @@ interface BlipsPreviewProps {
 
 const BlipPreview: FC<BlipsPreviewProps> = ({ projects }) => {
   const [data, setData] = useState<Blip | undefined>();
+
   if (data?.projectIds)
     data.projects = projects.filter((p) => data?.projectIds.includes(p.slug));
 
