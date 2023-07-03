@@ -55,7 +55,7 @@ class BlipTemplate extends Component {
     return (
       <iframe
         style={{ border: "none" }}
-        src={`${BaseUrl}/blips/preview`}
+        src={`${BaseUrl}/templates/blip`}
         // @ts-ignore
         width={this.state.size.width}
         // @ts-ignore
