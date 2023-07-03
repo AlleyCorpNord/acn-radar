@@ -17,7 +17,7 @@ import {
 } from "@mantine/core";
 import { CMSUrl, RepositoryUrl } from "../types/Constants";
 import { Edit } from "tabler-icons-react";
-import { QuadrantAccessory, RingColor } from "../pages/blips/[[...slug]]";
+import { QuadrantAccessory, RingColor } from "../types/helper";
 
 marked.use(mangle());
 
