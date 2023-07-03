@@ -4104,6 +4104,25 @@ if (false) {} else {
 }
 
 
+/***/ }),
+
+/***/ "./src/types/Constants.ts":
+/*!********************************!*\
+  !*** ./src/types/Constants.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BaseUrl: () => (/* binding */ BaseUrl),
+/* harmony export */   CMSUrl: () => (/* binding */ CMSUrl),
+/* harmony export */   RepositoryUrl: () => (/* binding */ RepositoryUrl)
+/* harmony export */ });
+var RepositoryUrl = "https://github.com/AlleyCorpNord/acn-radar/tree/main";
+var BaseUrl = "https://radar.alleycorpnord.com";
+var CMSUrl = "".concat(BaseUrl, "/admin/#");
+
+
 /***/ })
 
 /******/ 	});
@@ -4199,6 +4218,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _src_types_Constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../src/types/Constants */ "./src/types/Constants.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -4227,6 +4247,7 @@ var __assign = (undefined && undefined.__assign) || function () {
 };
 
 
+
 var BlipTemplate = /** @class */ (function (_super) {
     __extends(BlipTemplate, _super);
     function BlipTemplate(props) {
@@ -4244,7 +4265,6 @@ var BlipTemplate = /** @class */ (function (_super) {
         _this.iRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.createRef)();
         _this.state = {
             size: { width: 0, height: 0 },
-            blip: props.entry.getIn(["data"]).toJS(),
         };
         // @ts-ignore
         _this.props.window.addEventListener("resize", function () {
@@ -4270,7 +4290,7 @@ var BlipTemplate = /** @class */ (function (_super) {
         var blip = this.props.entry.getIn(["data"]).toJS();
         // @ts-ignore
         (_c = (_b = (_a = this.iRef) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.contentWindow) === null || _c === void 0 ? void 0 : _c.postMessage(blip, "*");
-        return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("iframe", { style: { border: "none" }, src: "http://localhost:3000/blips/preview", 
+        return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("iframe", { style: { border: "none" }, src: "".concat(_src_types_Constants__WEBPACK_IMPORTED_MODULE_2__.BaseUrl, "/blips/preview"), 
             // @ts-ignore
             width: this.state.size.width, 
             // @ts-ignore

@@ -1,4 +1,5 @@
 import { Component, LegacyRef, createRef } from "react";
+import { BaseUrl } from "../../src/types/Constants";
 
 class BlipTemplate extends Component {
   [x: string]: any;
@@ -10,7 +11,6 @@ class BlipTemplate extends Component {
 
     this.state = {
       size: { width: 0, height: 0 },
-      blip: props.entry.getIn(["data"]).toJS(),
     };
 
     // @ts-ignore
@@ -55,7 +55,7 @@ class BlipTemplate extends Component {
     return (
       <iframe
         style={{ border: "none" }}
-        src={"http://localhost:3000/blips/preview"}
+        src={`${BaseUrl}/blips/preview`}
         // @ts-ignore
         width={this.state.size.width}
         // @ts-ignore
