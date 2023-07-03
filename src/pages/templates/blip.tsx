@@ -1,14 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { BlipDetails } from "../../components/BlipDetails";
 import { Blip } from "../../types/Blip";
 import { Drawer } from "@mantine/core";
+import Project from "../../types/Project";
+import { GetStaticPaths, GetStaticPropsResult } from "next";
+import { importContent } from "../../helpers/DocumentLoading";
 
-const BlipPreview = () => {
+interface BlipsPreviewProps {
+  projects: Project[];
+}
+
+const BlipPreview: FC<BlipsPreviewProps> = ({ projects }) => {
   const [data, setData] = useState<Blip | undefined>();
+  if (data?.projectIds)
+    data.projects = projects.filter((p) => data?.projectIds.includes(p.slug));
 
   useEffect(() => {
     window.addEventListener("message", (e: MessageEvent) => {
-      console.log(e.data);
       setData(e.data);
     });
   }, []);
@@ -32,5 +40,13 @@ const BlipPreview = () => {
     </>
   );
 };
+
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<BlipsPreviewProps>
+> {
+  const projects = await importContent<Project>("projects");
+
+  return { props: { projects } };
+}
 
 export default BlipPreview;
