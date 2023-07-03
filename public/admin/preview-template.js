@@ -4214,6 +4214,17 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 
 
 var BlipTemplate = /** @class */ (function (_super) {
@@ -4222,30 +4233,48 @@ var BlipTemplate = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.handleLoad = function () {
             // @ts-ignore
-            var entry = _this.props.entry;
-            // @ts-ignore
-            var blip = _this.state.blip;
+            var blip = _this.props.entry.getIn(["data"]).toJS();
             setTimeout(function () {
                 var _a, _b, _c;
+                _this.updateSizeState();
                 // @ts-ignore
                 (_c = (_b = (_a = _this.iRef) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.contentWindow) === null || _c === void 0 ? void 0 : _c.postMessage(blip, "*");
             }, 100);
         };
         _this.iRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.createRef)();
-        _this.state = { blip: props.entry.getIn(["data"]).toJS() };
+        _this.state = {
+            size: { width: 0, height: 0 },
+            blip: props.entry.getIn(["data"]).toJS(),
+        };
+        // @ts-ignore
+        _this.props.window.addEventListener("resize", function () {
+            _this.updateSizeState();
+        });
         return _this;
     }
+    BlipTemplate.prototype.updateSizeState = function () {
+        var _this = this;
+        // @ts-ignore
+        this.setState(function (state, _props) {
+            return __assign(__assign({}, state), { size: {
+                    // @ts-ignore
+                    width: _this.props.window.innerWidth - 16,
+                    // @ts-ignore
+                    height: _this.props.window.innerHeight - 20,
+                } });
+        });
+    };
     BlipTemplate.prototype.render = function () {
         var _a, _b, _c;
         // @ts-ignore
         var blip = this.props.entry.getIn(["data"]).toJS();
         // @ts-ignore
         (_c = (_b = (_a = this.iRef) === null || _a === void 0 ? void 0 : _a.current) === null || _b === void 0 ? void 0 : _b.contentWindow) === null || _c === void 0 ? void 0 : _c.postMessage(blip, "*");
-        console.dir(this.props);
-        // @ts-ignore
-        var window = this.props.window;
-        console.log(window);
-        return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("iframe", { src: "http://localhost:3000/blips/preview", width: window.innerWidth, height: window.innerHeight, ref: this.iRef, onLoad: this.handleLoad }));
+        return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("iframe", { style: { border: "none" }, src: "http://localhost:3000/blips/preview", 
+            // @ts-ignore
+            width: this.state.size.width, 
+            // @ts-ignore
+            height: this.state.size.height, ref: this.iRef, onLoad: this.handleLoad }));
     };
     return BlipTemplate;
 }(react__WEBPACK_IMPORTED_MODULE_1__.Component));

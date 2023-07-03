@@ -1,24 +1,45 @@
-import React, { Component, FC, LegacyRef, createRef, useRef } from "react";
-import ReactDOM from "react-dom";
-import { BlipDetails } from "../../src/components/BlipDetails";
-import { MantineProvider, useMantineTheme } from "@mantine/core";
+import { Component, LegacyRef, createRef } from "react";
 
 class BlipTemplate extends Component {
+  [x: string]: any;
   iRef: LegacyRef<HTMLIFrameElement> | undefined;
 
   constructor(props) {
     super(props);
     this.iRef = createRef();
-    this.state = { blip: props.entry.getIn(["data"]).toJS() };
+
+    this.state = {
+      size: { width: 0, height: 0 },
+      blip: props.entry.getIn(["data"]).toJS(),
+    };
+
+    // @ts-ignore
+    this.props.window.addEventListener("resize", () => {
+      this.updateSizeState();
+    });
+  }
+
+  updateSizeState() {
+    // @ts-ignore
+    this.setState((state, _props) => {
+      return {
+        ...state,
+        size: {
+          // @ts-ignore
+          width: this.props.window.innerWidth - 16,
+          // @ts-ignore
+          height: this.props.window.innerHeight - 20,
+        },
+      };
+    });
   }
 
   handleLoad = () => {
     // @ts-ignore
-    const { entry } = this.props;
-    // @ts-ignore
-    const blip = this.state.blip;
+    const blip = this.props.entry.getIn(["data"]).toJS();
 
     setTimeout(() => {
+      this.updateSizeState();
       // @ts-ignore
       this.iRef?.current?.contentWindow?.postMessage(blip, "*");
     }, 100);
@@ -27,19 +48,18 @@ class BlipTemplate extends Component {
   render() {
     // @ts-ignore
     const blip = this.props.entry.getIn(["data"]).toJS();
+
     // @ts-ignore
     this.iRef?.current?.contentWindow?.postMessage(blip, "*");
-    console.dir(this.props);
-    // @ts-ignore
-
-    const window = this.props.window;
-    console.log(window);
 
     return (
       <iframe
+        style={{ border: "none" }}
         src={"http://localhost:3000/blips/preview"}
-        width={window.innerWidth}
-        height={window.innerHeight}
+        // @ts-ignore
+        width={this.state.size.width}
+        // @ts-ignore
+        height={this.state.size.height}
         ref={this.iRef}
         onLoad={this.handleLoad}
       />
