@@ -36,17 +36,17 @@ opinion: >-
   are making FHIR compliance mandatory and accelerating its implementation in
   Europe there is a competition with  [Open EHR](https://openehr.org/).
 
-   With FHIR a project gets a sophisticated data model for free for information exchange that could help drive the development
-   of UI components, APIs, data stores, etc.  This model has a built-in support for extension which makes it flexible for complex
-   use cases.
+  With FHIR a project gets a sophisticated data model for free for information exchange that could help drive the development
+  of UI components, APIs, data stores, etc.  This model has a built-in support for extension which makes it flexible for complex
+  use cases.
 
-   It is worth noting that it does come with a complex learning curve and a good health care domain background is required to 
-   manage it properly within health care workflows.  Our recommendation is to have SMEs in the product development team with a strong
-   background knowledge and experience in the healthcare industry.  
-   From our experience we feel that tech teams (developers, testers, analysts) typically start feeling comfortable with the spec after around 3-4 weeks 
-   of working with it and it typically takes more than a year to master and deeply understand the spec.
+  It is worth noting that it does come with a complex learning curve and a good health care domain background is required to 
+  manage it properly within health care workflows.  Our recommendation is to have SMEs in the product development team with a strong
+  background knowledge and experience in the healthcare industry.  
+  From our experience we feel that tech teams (developers, testers, analysts) typically start feeling comfortable with the spec after around 3-4 weeks 
+  of working with it and it typically takes more than a year to master and deeply understand the spec.
 
-   The spec also doesn't solve health care coding and terminology challenges and product development teams still need to write the translation layer from one code system to another.
+  The spec also doesn't solve health care coding and terminology challenges and product development teams still need to write the translation layer from one code system to another.
 
 
 
