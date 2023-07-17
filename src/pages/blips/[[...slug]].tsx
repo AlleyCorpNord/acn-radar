@@ -16,15 +16,8 @@ import {
   Badge,
   Title,
 } from "@mantine/core";
-import {
-  Code,
-  GoGame,
-  HelicopterLanding,
-  Radar,
-  Search,
-  Tool,
-} from "tabler-icons-react";
-import { FC, ReactNode, useEffect, useState } from "react";
+import { Radar, Search } from "tabler-icons-react";
+import { FC, useEffect, useState } from "react";
 import {
   Blip,
   Quadrants,
@@ -120,7 +113,7 @@ export const BlipsHome: FC<BlipsHomeProps> = ({ blips, projects }) => {
           <Drawer.Header>
             <Drawer.CloseButton />
           </Drawer.Header>
-          <Drawer.Body style={{ height: "100%" }}>
+          <Drawer.Body>
             {selectedBlip && <BlipDetails blip={selectedBlip} />}
           </Drawer.Body>
         </Drawer.Content>

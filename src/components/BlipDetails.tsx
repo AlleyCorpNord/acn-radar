@@ -93,7 +93,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
         <Space h="md" />
 
         {blip.projects?.length && (
-          <Flex direction="column" gap="sm">
+          <Flex direction="column" gap="sm" style={{ paddingBottom: 16 }}>
             <Title order={3}>Projects</Title>
             <List withPadding>
               {blip.projects?.map((project) => (
@@ -102,7 +102,17 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             </List>
           </Flex>
         )}
-        <Stack justify="flex-end" style={{ flexGrow: 1, paddingBottom: 70 }}>
+        <Stack
+          justify="flex-end"
+          style={{
+            backgroundColor: "#fff",
+            position: "sticky",
+            paddingBottom: 8,
+            paddingTop: 4,
+            marginBottom: -16,
+            bottom: 0,
+          }}
+        >
           <Group position="apart">
             <Text>
               <a
