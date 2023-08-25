@@ -9,8 +9,7 @@
     "incremental": true,
     "jsx": "preserve",
     "types": [
-      "node",
-      "webpack-env"
+      "node"
     ],
     "skipLibCheck": true,
     "strict": false,

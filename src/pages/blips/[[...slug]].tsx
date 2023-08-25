@@ -16,7 +16,7 @@ import {
   Badge,
   Title,
 } from "@mantine/core";
-import { Radar, Search } from "tabler-icons-react";
+import { IconRadar, IconSearch } from "@tabler/icons-react";
 import { FC, useEffect, useState } from "react";
 import {
   Blip,
@@ -163,7 +163,7 @@ const SearchBar: FC<SearchBarProps> = ({
     <Grid columns={24}>
       <Grid.Col span="auto">
         <TextInput
-          icon={<Search size="1.1rem" />}
+          icon={<IconSearch size="1.1rem" />}
           radius="md"
           size="sm"
           placeholder="Search"
@@ -237,7 +237,7 @@ function HomeHeader() {
           color="brand"
           component="a"
           target="_blank"
-          rightIcon={<Radar size="1.1rem" />}
+          rightIcon={<IconRadar size="1.1rem" />}
           href={`${CMSUrl}/collections/blip/new`}
           size="xs"
         >
