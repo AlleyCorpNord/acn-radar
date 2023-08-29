@@ -16,7 +16,7 @@ import {
   Badge,
 } from "@mantine/core";
 import { CMSUrl, RepositoryUrl } from "../types/Constants";
-import { Edit } from "tabler-icons-react";
+import { IconEdit } from "@tabler/icons-react";
 import { QuadrantAccessory, RingColor } from "../types/helper";
 
 marked.use(mangle());
@@ -127,7 +127,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
               href={`${CMSUrl}/collections/blip/entries/${blip.slug}`}
               target="_blank"
               color="light"
-              rightIcon={<Edit size="1.1rem" />}
+              rightIcon={<IconEdit size="1.1rem" />}
               size="xs"
             >
               Edit Blip
