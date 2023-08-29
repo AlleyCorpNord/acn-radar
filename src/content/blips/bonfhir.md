@@ -9,7 +9,7 @@ opinion: >-
   As of Jul 2023 it is still in beta release and therefore lacking maturity and documentation.
   
 
-  Also note that onboarding and integrating the framework at this moment still requires some advanced engineering and architecture knowledge.  The team is working on simplifying the adoption and the requiried technical entre level.
+  Also note that onboarding and integrating the framework at this moment still requires some advanced engineering and architecture knowledge.  The team is working on simplifying the adoption and the requiried technical entry level.
 
 
 link: https://bonfhir.dev/

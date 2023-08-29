@@ -13,6 +13,12 @@ opinion: >-
   
   - Simplified Testing and Continuous Integration
 
+  The success or failure highly depends on the tool that you use, we have found that in Typescrypt+javascript codebases a tool such as:  [turborepo](../blips/turborepo) simplifies the building and deployment of the different packages and apps of the monorepo and handles complex aspects such as partial builds and deployments.
+
+  We haven't found a powerful tool that can handle monorepos that combine modules or components that use different programming languages.
+  
+  We recommend monorepos in modules and packages that are highly interconnected and follow the same release workflow.  We don't recommend monorepos to mix modules that are being evolved and maintained by independent teams with different release plans.  In general the rule of thumb is if the evolution lifecycle of the different parts is related (Ex:  Same product but different components) then a monorepo is recommended.
+
 
 link: https://en.wikipedia.org/wiki/Monorepo
 ring: adopt

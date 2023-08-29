@@ -6,6 +6,8 @@ opinion: >-
   It has the following strengths:
   
   - Its version control of design artifacts
+  - Easy to learn and excellent documentation and tutorials
+  - Figjam whiteboarding tool facilitates team collaboration around figma artifacts
 
   It has the following weaknesses:
 
@@ -20,4 +22,6 @@ businessModel:
 projectIds:
   - attend
   - diana-health
+  - capable-health
+  - cumulus
 ---

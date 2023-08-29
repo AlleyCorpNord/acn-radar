@@ -26,4 +26,6 @@ businessModel:
 projectIds:
   - attend
   - diana-health
+  - cumulus
+  - capable-health
 ---

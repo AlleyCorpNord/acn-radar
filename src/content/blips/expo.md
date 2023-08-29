@@ -30,4 +30,5 @@ businessModel:
 projectIds:
   - attend
   - diana-health
+  - reside
 ---

@@ -18,4 +18,7 @@ businessModel:
 projectIds:
   - attend
   - diana-health
+  - capable
+  - chamber-cardio
+  - reside-health
 ---
