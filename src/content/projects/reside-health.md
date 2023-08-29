@@ -4,6 +4,6 @@ description: Reside Health makes it effortless to take care of your physical and
   mental health with expert clinicians at your fingertips.
 link: https://www.reside.health/
 contacts: |-
-  * J﻿ulien Blin
-  * N﻿icholas Gélinas
+  * Julien Blin
+  * Nicholas Gélinas
 ---

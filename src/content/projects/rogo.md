@@ -7,7 +7,7 @@ description: Rogo empowers your team to uncover data insights – no SQL or
   forward.
 link: https://rogodata.com/
 contacts: |-
-  * A﻿lexandre Rimthong
-  * K﻿senia Nadkina
-  * B﻿rock Jenken
+  * Alexandre Rimthong
+  * Ksenia Nadkina
+  * Brock Jenken
 ---

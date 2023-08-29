@@ -4,6 +4,6 @@ description: Your Partner in Cardiovascular Care
 link: https://www.chambercardio.com/
 contacts: |-
   * Ysaël Pépin
-  * J﻿ulien Blin
-  * M﻿axime Gauthier
+  * Julien Blin
+  * Maxime Gauthier
 ---
