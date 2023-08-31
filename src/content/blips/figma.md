@@ -16,7 +16,7 @@ opinion: >-
 link: 
   - https://www.figma.com/
 ring: adopt
-quadrant: tool
+quadrant: tools
 businessModel:
   - saas
 projectIds:

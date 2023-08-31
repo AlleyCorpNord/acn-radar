@@ -23,7 +23,7 @@ opinion: >-
 link: 
   - https://expo.dev/
 ring: adopt
-quadrant: platform
+quadrant: platforms
 businessModel:
   - open-source
   - saas

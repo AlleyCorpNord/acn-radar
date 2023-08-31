@@ -12,7 +12,7 @@ opinion: >-
 link: 
   - https://sentry.io/
 ring: adopt
-quadrant: platform
+quadrant: platforms
 businessModel:
   - saas
 projectIds:

@@ -20,7 +20,7 @@ opinion: >-
 link: 
   - https://www.shortcut.com/
 ring: adopt
-quadrant: tool
+quadrant: tools
 businessModel:
   - saas
 projectIds:

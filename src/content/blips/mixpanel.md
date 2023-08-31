@@ -18,7 +18,7 @@ opinion: >-
 link: 
   - https://mixpanel.com/
 ring: adopt
-quadrant: tool
+quadrant: tools
 businessModel:
   - saas
 projectIds:
