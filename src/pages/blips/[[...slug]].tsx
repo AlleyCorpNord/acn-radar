@@ -285,8 +285,9 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
             </td>
             <td>
               {
-                <Group spacing="xs">
-                  {QuadrantAccessory[blip.quadrant]} {Quadrants[blip.quadrant]}
+                <Group spacing="xs" noWrap>
+                  {QuadrantAccessory[blip.quadrant]}
+                  <Text>{Quadrants[blip.quadrant]}</Text>
                 </Group>
               }
             </td>
