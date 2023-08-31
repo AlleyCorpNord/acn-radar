@@ -1,5 +1,5 @@
 ---
-title: mixpanel
+title: Mixpanel
 description: >-
   Mixpanel is primarily a product analytics platform, designed to give marketers and product teams insights into how to best acquire, convert, and retain customers, with real-time data across devices and channels.
 opinion: >-

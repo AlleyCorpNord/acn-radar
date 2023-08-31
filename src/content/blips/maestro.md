@@ -1,5 +1,5 @@
 ---
-title: maestro
+title: Maestro
 description: >-
   Maestro is a mobile UI testing framework that facilitates the testing of user journeys inside an app.   
 opinion: >-

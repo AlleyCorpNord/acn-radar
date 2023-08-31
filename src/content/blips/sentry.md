@@ -1,5 +1,5 @@
 ---
-title: sentry
+title: Sentry
 description: >-
   Sentry is an error-tracking and performance monitoring platform platform that helps developers monitor live applications. 
 opinion: >-

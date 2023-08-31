@@ -1,5 +1,5 @@
 ---
-title: healthjump
+title: Healthjump
 description: >-
   Healthjump is a cloud-baed healthcare integration engine. 
   Healthcare integration engines standardize data flow across disparate clinical data systems—like EHRs and revenue cycle management software—to improve workflows, optimize the delivery of care, and streamline the integration and adoption of new technologies. Healthcare integration engines facilitate the exchange of clinical, financial, and operational data, creating transparency and visibility across health care systems and hospital IT applications.

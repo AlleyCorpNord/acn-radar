@@ -1,7 +1,7 @@
 ---
-title: fhir
+title: FHIR
 description: >-
-  The **Fast Healthcare Interoperability Resources'** (**FHIR**, pronounced
+  The **Fast Healthcare Interoperability Resources** (**FHIR**, pronounced
   "fire") standard is a set of rules and specifications for exchanging
   electronic health care data. It is designed to be flexible and adaptable, so
   that it can be used in a wide range of settings and with different health care

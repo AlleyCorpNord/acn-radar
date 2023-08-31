@@ -1,5 +1,5 @@
 ---
-title: shortcut
+title: Shortcut
 description: >-
   Shortcut allows teams to collaborate, plan, and visualize work. Users can track and manage tasks through stories, milestones, epics, and iterations.
 opinion: >-

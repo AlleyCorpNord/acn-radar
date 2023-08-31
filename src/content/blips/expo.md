@@ -1,5 +1,5 @@
 ---
-title: expo
+title: Expo
 description: >-
   Expo is a set of tools and services built around React Native and native platforms that help you develop, build and deploy iOS and Android apps from the same JavaScript/TypeScript codebase.  They have an open source platform and a set of commercial cloud application services built on top of it.  
 opinion: >-
