@@ -18,7 +18,7 @@ export const Quadrants = {
   tools: "Tools",
   techniques: "Techniques",
   platforms: "Platforms",
-  "languages-and-frameworks": "Languages & Frameworks",
+  "languages-and-frameworks": "Language/Frameworks",
 } as const;
 
 export const allQuadrants = Object.keys(Quadrants);
