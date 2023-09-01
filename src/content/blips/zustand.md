@@ -16,7 +16,7 @@ opinion: >-
 link: 
   - https://github.com/pmndrs/zustand
 ring: adopt
-quadrant: tool
+quadrant: tools
 businessModel:
   - open-source
 projectIds:

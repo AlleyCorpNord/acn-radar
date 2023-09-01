@@ -15,7 +15,7 @@ opinion: >-
 
 
 link: 
-  - https://gitee.com/hailei_yan/pdfplumber
+  - https://github.com/pgvector
 ring: adopt
 quadrant: tools
 businessModel:

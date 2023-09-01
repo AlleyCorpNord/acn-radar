@@ -1,5 +1,5 @@
 ---
-title: figma
+title: Figma
 description: >-
   Figma is a cloud-based design tool for people to create, share, and test designs for websites, mobile apps, and other digital products and experiences. 
 opinion: >-
@@ -16,7 +16,7 @@ opinion: >-
 link: 
   - https://www.figma.com/
 ring: adopt
-quadrant: tool
+quadrant: tools
 businessModel:
   - saas
 projectIds:

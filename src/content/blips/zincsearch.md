@@ -1,5 +1,5 @@
 ---
-title: zincSearch
+title: ZincSearch
 description: >-
   ZincSearch is a search engine that does full text indexing. It is a lightweight alternative to Elasticsearch and runs using a fraction of the resources. It uses [bluge](https://github.com/blugelabs/bluge) as the underlying indexing library.
 opinion: >-

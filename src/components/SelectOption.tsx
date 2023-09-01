@@ -12,9 +12,7 @@ export const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
     <div ref={ref} {...others}>
       <Group noWrap>
         {accessory}
-        <div>
-          <Text size="sm">{label}</Text>
-        </div>
+        <Text size="sm">{label}</Text>
       </Group>
     </div>
   )

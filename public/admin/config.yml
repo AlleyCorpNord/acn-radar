@@ -38,7 +38,7 @@ collections:
           options:
             [
               {
-                label: "Languages & Frameworks",
+                label: "Languages/Frameworks",
                 value: "languages-and-frameworks",
               },
               { label: "Techniques", value: "techniques" },

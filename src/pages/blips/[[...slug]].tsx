@@ -175,7 +175,7 @@ const SearchBar: FC<SearchBarProps> = ({
         />
       </Grid.Col>
 
-      <Grid.Col span={8}>
+      <Grid.Col span={6}>
         <Select
           placeholder="Quadrant"
           radius="md"
@@ -256,6 +256,13 @@ interface BlipsTableProps {
 const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
   return (
     <Table highlightOnHover>
+      <colgroup>
+       <col />
+       <col style={{width: "80%"}} />
+       <col/>
+       <col/>
+       <col style={{width: "20%"}}/>
+    </colgroup>
       <thead>
         <tr>
           <th>Title</th>
@@ -285,8 +292,9 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
             </td>
             <td>
               {
-                <Group spacing="xs">
-                  {QuadrantAccessory[blip.quadrant]} {Quadrants[blip.quadrant]}
+                <Group spacing="xs" noWrap>
+                  {QuadrantAccessory[blip.quadrant]}
+                  <Text>{Quadrants[blip.quadrant]}</Text>
                 </Group>
               }
             </td>
@@ -297,7 +305,7 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
                 </Badge>
               }
             </td>
-            <td>{blip.projects?.map((project) => project.title).join(", ")}</td>
+            <td>{blip.projects?.map((project) => project.title.replace(/ /g, "\u00A0")).join(", ")}</td>
           </tr>
         ))}
       </tbody>

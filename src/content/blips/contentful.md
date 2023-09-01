@@ -1,5 +1,5 @@
 ---
-title: contentful
+title: Contentful
 description: >-
   Contentful is a headless Content Management System (CMS)
 opinion: >-
