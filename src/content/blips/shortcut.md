@@ -17,8 +17,7 @@ opinion: >-
   It has the following weaknesses:
 
   - Some advanced features are hidden and not easy to access and figure out (Ex:  ticket templates)
-link:
-  - https://www.shortcut.com/
+link: https://www.shortcut.com/
 ring: adopt
 quadrant: tools
 businessModel:
