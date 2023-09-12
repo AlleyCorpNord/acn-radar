@@ -1,5 +1,5 @@
 ---
-title: retool
+title: Retool
 description: >-
   Retool is a low-code application platform that makes it easy to build custom apps, dashboards, admin panels, and other internal tools to run critical business operations.  
 opinion: >-

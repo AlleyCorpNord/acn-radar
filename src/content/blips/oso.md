@@ -1,5 +1,5 @@
 ---
-title: oso
+title: Oso
 description: >-
   Oso is an authorization tool that can be deployed either as framework leveraging its open-source library or as a cloud SaaS leveraging its authorization as a service offering. Its policy engine for authorization represents security as code so developers can express security as a natural extension of their applications.
 opinion: >-

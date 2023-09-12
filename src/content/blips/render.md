@@ -1,5 +1,5 @@
 ---
-title: render
+title: Render
 description: >-
   Render is a PaaS just like Heroku and Firebase. Their own definition:  "Render is a unified platform to build and run all your apps and websites with free SSL, a global CDN, private networks and auto deploys from Git."
 opinion: >-

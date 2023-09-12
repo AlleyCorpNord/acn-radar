@@ -1,5 +1,5 @@
 ---
-title: mantine
+title: Mantine
 description: >-
   Mantine is a robust library of React components designed to elevate both user and developer experiences. With a collection of over 100 highly customizable components and 50 hooks, Mantine aims to simplify the process of building dynamic applications.
 opinion: >-
