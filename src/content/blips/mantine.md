@@ -13,6 +13,13 @@ opinion: >-
   cons: 
     - Limited Next.js 13 Router Support: The current version(v6.0.20) of Mantine has some compatibility issues with Next.js 13's app router.
     - Upcoming Breaking Changes: The future release(v7) aimed at supporting Next.js 13 will introduce significant architectural changes, transitioning from styled-components to a Styles API. This will require code adjustments.
+    - Uses non-standard CSS syntax which might be confusing for some (e.g., fontSize = fz).
+
+
+
+
+
+
 
 link: https://mantine.dev/
 ring: assess
