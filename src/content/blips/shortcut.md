@@ -1,10 +1,11 @@
 ---
 title: Shortcut
-description: >-
-  Shortcut allows teams to collaborate, plan, and visualize work. Users can track and manage tasks through stories, milestones, epics, and iterations.
+description: Shortcut allows teams to collaborate, plan, and visualize work.
+  Users can track and manage tasks through stories, milestones, epics, and
+  iterations.
 opinion: >-
   It has the following strengths:
-  
+
   - Its free plan offers a lot of features although some important ones such as reports are not available
 
   - It is flexible and supports both kanban or Scrum
@@ -16,9 +17,7 @@ opinion: >-
   It has the following weaknesses:
 
   - Some advanced features are hidden and not easy to access and figure out (Ex:  ticket templates)
-
-link: 
-  - https://www.shortcut.com/
+link: https://www.shortcut.com/
 ring: adopt
 quadrant: tools
 businessModel:
@@ -28,4 +27,5 @@ projectIds:
   - diana-health
   - cumulus
   - capable-health
+  - synapsebio
 ---
