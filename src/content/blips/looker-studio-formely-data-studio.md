@@ -29,4 +29,5 @@ businessModel:
   - saas
 projectIds:
   - synapsebio
+  - capable health
 ---
