@@ -7,7 +7,7 @@ opinion: >-
   components. The tool integrates well with various data sources, especially
   BigQuery. When used with BigQuery, the data source provider could create a BI
   Engine in Google Cloud that can take the load of executing BigQuery jobs and
-  faster the generation of the reports.
+  speed up the generation of the reports.
 
 
   However, there are some negative aspects to consider:
