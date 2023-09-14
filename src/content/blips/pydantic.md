@@ -18,4 +18,5 @@ businessModel:
   - open-source
 projectIds:
   - synapsebio
+  - diana-health
 ---
