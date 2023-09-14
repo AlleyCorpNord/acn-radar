@@ -12,6 +12,8 @@ opinion: >-
 
   GCP Artifact Registry allows to make artifacts available by region, to provide access based on company security policy. Different registries can also be created for different purposes (dev vs prod)
 
+  In Docker registry, images are scan for security vulnerabilities.
+
 
   There are some constraints/limitations to account for when using GCP Artifact Registry:
 
