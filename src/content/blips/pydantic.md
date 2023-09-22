@@ -4,7 +4,7 @@ description: Pydantic is a data validation library for Python. It provides a
   unified framework to define and validate input classes that can be used as
   data contracts for API or CLI in pure Python.
 opinion: >-
-  Pydantic is widely used in most of the common tools in Python community
+  Pydantic is widely used in most of the common tools in the Python community
   (FastAPI, Django, LangChain, etc.). It uses hints and decorators which make it
   readable and easy to learn. It is also compatible with several schema
   standards in REST API ecosystem (OpenAPI, JSON schema).
