@@ -7,7 +7,7 @@ opinion: >-
   Pydantic is widely used in most of the common tools in the Python community
   (FastAPI, Django, LangChain, etc.). It uses hints and decorators which make it
   readable and easy to learn. It is also compatible with several schema
-  standards in REST API ecosystem (OpenAPI, JSON schema).
+  standards in the REST API ecosystem (OpenAPI, JSON schema).
 
 
   There could be some mismatches when serializing to or deserializing from other schema standards (for `None` values for example). Proper testing has to be done to ensure the appropriate behaviour
