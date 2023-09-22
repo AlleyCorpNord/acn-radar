@@ -9,7 +9,7 @@ opinion: >-
 
   * very customizable regarding types of plots (Ex: Scientific, Finance, use-case specific)
 
-  * supports complex data visualizations (timeseries, 3D, etc.)
+  * supports complex data visualizations (time series, 3D, etc.)
 
   * interactive graphs and tables using React components
 
@@ -18,7 +18,10 @@ opinion: >-
   * Free version available
 
 
-  One drawback of using Dask is that some complex cases could require more support that is not provided with the free version. The enterprise offering includes enterprise features (security, RBAC, visualization workload management, etc.) and support but the pricing is not published on the website.
+  In the context of SynapseBio, Dash was used to create dashboards that involved visualizing Electro-encephalograms (EEG) that are time series signals stored in files with complex or proprietary format.
+
+
+  One drawback of using Dash is that some complex cases (requiring more computing resources for example) could require more support that is not provided with the free version. The enterprise offering includes enterprise features (security, RBAC, visualization workload management, etc.) and support but the pricing is not published on the website.
 
 
   It is better to use Dash when you need domain-specific customizations (Machine Learning/Data Science for example). Indeed, for pure analytics reports and dashboards, it is better to go to most established tools like Looker, Tableau, Metabase, etc.
