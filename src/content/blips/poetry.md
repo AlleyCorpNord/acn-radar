@@ -9,9 +9,9 @@ opinion: >-
   by combining different tools: `requirements.txt`, `setup.py`, `.cfg` files).
   It allows, using one single CLI tool:
 
-  * add, remove versions of Python packages dependencies
+  * adding/removing versions of Python packages dependencies
 
-  * create reproducible virtual environments during the development of a Python project using pinned versions of the dependencies
+  * creating reproducible virtual environments during the development of a Python project using pinned versions of the dependencies
 
   * providing tools to package and publish Python packages
 
