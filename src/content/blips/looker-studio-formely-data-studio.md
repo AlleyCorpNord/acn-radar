@@ -1,6 +1,11 @@
 ---
-title: Looker Studio (formely Data Studio)
-description: It is a free online tool to create analytics reports and dashboards.
+title: Looker Studio
+description: >-
+  Formely known as Data Studio, it is a free online tool to create analytics
+  reports and dashboards.
+
+
+  To use it, a Google account should be created, but there is no need of using Google Cloud Platform.
 opinion: >-
   This a free reports and dashboard creation tool that has a low learning curve.
   The user can find lot of tutorials on Youtube showing how to use different
