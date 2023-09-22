@@ -2,17 +2,19 @@
 title: GCP Artifact Registry
 description: GCP Artifact Registry is the new single place to manage all build
   artifacts in GCP. It is notably replacing Container Registry for managing
-  Docker images. GCP Artifact Registry also offer the possibility to handle
+  Docker images. GCP Artifact Registry also offers the possibility to handle
   build artifacts for Python (similar to a private PyPi), Java (private Maven)
   and Node.js (private npm).
 opinion: >-
   GCP Artifact Registry provides an artifact registry that is fully integrated
-  with GCP. This is a good choice for a startup building on GCP and benefitting
-  from the Google Startup Program.
+  with GCP, therefore it is easy to setup roles and permissions for your users
+  and applications. This is also a reasonable economic choice for a startup
+  building on GCP and benefitting from the Google Startup Program.
 
-  GCP Artifact Registry allows to make artifacts available by region, to provide access based on company security policy. Different registries can also be created for different purposes (dev vs prod)
 
-  In Docker registry, images are scan for security vulnerabilities.
+  Other advantages of GCP Artifact Registry are that it allows to make artifacts available by region, to provide access based on company security policy. Different registries can also be created for different purposes (dev vs prod)
+
+  In the Docker registry, images are scanned for security vulnerabilities.
 
 
   There are some constraints/limitations to account for when using GCP Artifact Registry:
