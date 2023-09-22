@@ -13,7 +13,10 @@ opinion: >-
 
   * Large Language Model-specific experimentations facilities
 
-  * Authentication and authorization (was only available with the paid Databricks offering before)
+  * Authentication and authorization (was only available with the paid Databricks offering or in Azure ML before)
+
+
+  MLflow is also easily deployed in main cloud platforms. Indeed, it is offered as a managed service when using Databricks. It is the experiment tracking tools used in Azure ML. It can be deployed using managed services in AWS and in GCP. In the SynapseBio project, MLflow was deployed using Cloud Run services
 
 
   Very interesting features that are missing are data versioning and data lineage. Indeed, data can be logged in experiments, but they are not stand alone component so, it is impossible to track versions or to link them to input or output streams of data.
