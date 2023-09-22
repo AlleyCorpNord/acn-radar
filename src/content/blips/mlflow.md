@@ -2,7 +2,7 @@
 title: MLflow
 description: MLFlow is an open source platform to manage the ML lifecycle. It
   allows to track ML experiments and provides a central model registry. It could
-  also helps in managing ML projects reproducibility and deploy models.
+  also help in managing ML projects reproducibility and deploy models.
 opinion: >-
   MLflow is a well adopted tool in the ML Practitioners community. It is very
   lightweight and user-friendly. Functionalities are available through Python
