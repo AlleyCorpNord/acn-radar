@@ -7,12 +7,12 @@ opinion: >-
   Using Apache Beam, the data engineer can create ETLs processing logic (like
   read data from files or database and writing it into another file format or
   another data repository or read data, transform them and write the result,
-  etc.). This processing logic is written once and can be executed in different
-  environments: on a local computer (for testing), GCP DataFlow, an Apache Spark
-  cluster, Apache Flink, etc. For example, if a data engineer create a data
-  pipeline with Apache Beam, it can run it in an Apache Spark cluster using the
-  Spark runner or run it on GCP DataFlow. If the same data pipeline was written
-  in the Apache Spark native programming model (using
+  etc.). This processing logic is **written once** and can be executed in
+  different environments: on a local computer (for testing), GCP DataFlow, an
+  Apache Spark cluster, Apache Flink, etc. For example, if a data engineer
+  create a data pipeline with Apache Beam, it can run it in an Apache Spark
+  cluster using the Spark runner or run it on GCP DataFlow. If the same data
+  pipeline was written in the Apache Spark native programming model (using
   [RDD](https://spark.apache.org/docs/latest/rdd-programming-guide.html) or
   [Spark SQL](https://spark.apache.org/sql/)), it would not be able to run on
   GCP DataFlow, or Apache Flink (if it is a streaming data pipeline).
