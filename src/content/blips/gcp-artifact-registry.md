@@ -24,7 +24,10 @@ opinion: >-
   * `docker login` command cannot be used to authenticate with the Docker registry. This could require some adjustments in CI scripts if migrating from a previous solution that was using it.
 
 
-  GCP Artifact Registry is competing with offers like Sonatype Nexus Repository (which handle a lot more kind of binary repositories), Github Packages or Gitlab Packages and Registries. However, GCP Artifact Registry is a cost-optimized alternative for a  startup building a GCP solution, especially with the Google Startup Program.
+  GCP Artifact Registry is competing with offers like Sonatype Nexus Repository (which handle a lot more kind of binary repositories), Github Packages or Gitlab Packages and Registries. However, when building SynapseBio platform in GCP, using those alternative offers would have brought additional cost and additional operating issues (like providing the credentials to retrieve the image when deploying an image in CloudRun for example). 
+
+
+  In conclusion, GCP Artifact Registry is a full integrated, cost-optimized alternative for a startup building a GCP solution, especially if it benefits from the Google Startup Program.
 link: https://cloud.google.com/artifact-registry
 ring: trial
 quadrant: tools
