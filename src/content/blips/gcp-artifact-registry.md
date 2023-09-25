@@ -19,12 +19,12 @@ opinion: >-
 
   There are some constraints/limitations to account for when using GCP Artifact Registry:
 
-  * the Python registry cannot automatically mirror the official PyPi.org (like other private PyPi servers allow to)
+  * the Python registry cannot automatically mirror the official PyPi.org (like other private PyPi servers allow to). However, this could be considered a good practice on a security point of view.
 
-  * `docker login` command cannot be used to authenticate with the Docker registry
+  * `docker login` command cannot be used to authenticate with the Docker registry. This could require some adjustments in CI scripts if migrating from a previous solution that was using it.
 
 
-  However, GCP Artifact Registry is a cost-optimized alternative for a  GCP solution, especially with the Google Startup Program.
+  However, GCP Artifact Registry is a cost-optimized alternative for a  startup building a GCP solution, especially with the Google Startup Program.
 link: https://cloud.google.com/artifact-registry
 ring: trial
 quadrant: tools
