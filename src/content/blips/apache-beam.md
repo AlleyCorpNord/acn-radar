@@ -18,6 +18,9 @@ opinion: >-
   GCP DataFlow, or Apache Flink (if it is a streaming data pipeline).
 
 
+  Tools like AWS Glue or Azure Data Factory generally offer a low code environment to create the ETLs and then execute those ETLs on a specific backend like an Apache Spark cluster or an Hadoop MapReduce cluster. Apache Beam just compares to their pipeline editor environment, but as a full-code approach.
+
+
   Another advantage of using Apache Beam is that the programmer can leverage parallel computing without handling the orchestration challenges associated with it.
 
 
