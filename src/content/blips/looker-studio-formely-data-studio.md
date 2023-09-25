@@ -25,7 +25,7 @@ opinion: >-
   * there is a limited offering in terms of visualization components
 
 
-  Therefore the tool should be limited to simple dashboards and reports that do not require complex join/grouping.
+  Therefore the tool should be limited to simple dashboards and reports that do not require complex joins and aggregations.
 link: https://lookerstudio.google.com/
 ring: trial
 quadrant: tools
