@@ -257,12 +257,12 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
   return (
     <Table highlightOnHover>
       <colgroup>
-       <col />
-       <col style={{width: "80%"}} />
+        <col />
+        <col style={{width: "80%"}} />
        <col/>
        <col/>
        <col style={{width: "20%"}}/>
-    </colgroup>
+      </colgroup>
       <thead>
         <tr>
           <th>Title</th>
@@ -305,7 +305,9 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
                 </Badge>
               }
             </td>
-            <td>{blip.projects?.map((project) => project.title.replace(/ /g, "\u00A0")).join(", ")}</td>
+            <td>
+              <Projects projects={blip.projects} />
+            </td>
           </tr>
         ))}
       </tbody>
@@ -314,6 +316,32 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
 };
 
 export default BlipsHome;
+
+function Projects({ projects }: { projects: Project[] | undefined }) {
+  if (!projects?.length) {
+    return null;
+  }
+
+  if (projects.length <= 4) {
+    return (
+      <>
+        {projects
+          .map((project) => project.title.replace(/ /g, "\u00A0"))
+          .join(", ")}
+      </>
+    );
+  }
+
+  return (
+    <>
+      {projects
+        .slice(0, 3)
+        .map((project) => project.title.replace(/ /g, "\u00A0"))
+        .join(", ")}{" "}
+      and {projects.length - 3} more.
+    </>
+  );
+}
 
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<BlipsHomeProps>
