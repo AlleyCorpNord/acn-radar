@@ -51,6 +51,7 @@ collections:
           name: "businessModel",
           widget: "select",
           multiple: true,
+          required: false,
           options:
             [
               { label: "Open Source", value: "open-source" },
