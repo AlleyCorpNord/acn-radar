@@ -1,11 +1,13 @@
 import Head from "next/head";
 import React from "react";
 import { MantineProvider, useMantineTheme } from "@mantine/core";
-import { Raleway } from "next/font/google";
+import { Outfit, Atkinson_Hyperlegible } from "next/font/google";
 
-const font = Raleway({
-  weight: "500",
-  style: "normal",
+const headingFont = Outfit({
+  subsets: ["latin"],
+});
+const bodyFont = Atkinson_Hyperlegible({
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
@@ -39,7 +41,8 @@ const App = ({ Component, pageProps }) => {
               "#21564B"
             ],
           },
-          fontFamily: font.style.fontFamily,
+          fontFamily: bodyFont.style.fontFamily,
+          headings: { fontFamily: headingFont.style.fontFamily },
           primaryColor: "brand",
         }}
       >
