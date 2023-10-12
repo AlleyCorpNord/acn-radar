@@ -1,5 +1,5 @@
 ---
-title: Architectural Decision Records (ADR)
+title: ADR
 description: Architecture Design Records (ADRs) are a method of documenting
   crucial architectural decisions made during a software project.
 opinion: >-
