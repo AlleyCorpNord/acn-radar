@@ -39,7 +39,6 @@ import { SelectItem } from "../../components/SelectOption";
 import { BadgeSelectItem } from "../../components/BadgeSelectOption";
 import { QuadrantAccessory, RingColor } from "../../types/helper";
 
-marked.setOptions({ headerIds: false });
 marked.use(mangle());
 
 const useStyles = createStyles(() => ({
