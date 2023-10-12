@@ -38,6 +38,8 @@ import Image from "next/image";
 import { SelectItem } from "../../components/SelectOption";
 import { BadgeSelectItem } from "../../components/BadgeSelectOption";
 import { QuadrantAccessory, RingColor } from "../../types/helper";
+import logo from "./logo.png";
+
 
 marked.use(mangle());
 
@@ -220,11 +222,10 @@ function HomeHeader() {
     <Header height={60} mb="lg">
       <Container className={classes.header}>
         <div>
-          <Group>
+          <Group spacing={0}>
             <Image
-              src="/img/acn-full-logo.png"
-              height={35}
-              width={82}
+              src={logo}
+              width={150}
               alt="AlleyCorp Nord Logo"
             />
             <Title color="brand" order={3}>
