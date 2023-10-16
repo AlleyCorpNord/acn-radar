@@ -22,8 +22,7 @@ opinion: >-
 link: https://c4model.com/
 ring: trial
 quadrant: techniques
-businessModel:
-  - open-source
+businessModel: null
 projectIds:
   - ensage
   - reside-health
