@@ -39,11 +39,13 @@ opinion: >-
 
 
   ADRs can be maintained and authored in a CMS (such as Notion or Confluence), or simply stored as markup files in a git repository. [There are some tools](https://adr.github.io/madr/tooling.html) to help with this, although they are not required.
+
+
+  See also: [the ADR Process by AWS](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/).
 link: https://adr.github.io/madr/
 ring: trial
 quadrant: techniques
-businessModel:
-  - open-source
+businessModel: null
 projectIds:
   - ensage
   - reside-health
