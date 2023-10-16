@@ -1,17 +1,40 @@
 ---
-title: BonFHIR
-description: >-
-  BonFHIR is a collection of open-source building blocks (technically NPM packages) that can be used to create products and solutions based on the [HL7 FHIR](https://fhir.org/) standard.  The vision of the team behind it is to become the equivalent of [retool](https://retool.com/) for FHIR.  
+title: bonFHIR
+description: Open-source TypeScript library aimed at simplifying the development
+  of applications that use [FHIR](https://hl7.org/fhir/).
 opinion: >-
-  It allows you to save a lot of time and reuse boilerplate code (Ex:  Formatters).  A team working on a health-tech project can save up to 6 months of work by leveraging bonfhir.  
-  
-  
-  As of Jul 2023 it is still in beta release and therefore lacking maturity and documentation.
-  
-
-  Also note that onboarding and integrating the framework at this moment still requires some advanced engineering and architecture knowledge.  The team is working on simplifying the adoption and the requiried technical entry level.
+  bonFHIR allows easy development of healthcare tech applications that use the
+  [FHIR](https://hl7.org/fhir/) standard.
 
 
+  In conjunction with a server such as [Medplum](https://radar.alleycorpnord.com/blips/medplum), it can be used to create web, mobile, and backend application quickly and easily.
+
+
+  It covers the following features:
+
+
+  * FHIR client (REST & GraphQL)
+
+  * Resources & Data types manipulation
+
+  * Localized formatters
+
+  * React state management (using React Query)
+
+  * [React UI Components](https://bonfhir.dev/storybook)
+
+  * FHIR Subscriptions (with support for AWS Lambda)
+
+  * Custom FHIR Resources
+
+  * Code generation
+
+  * CLI
+
+  * … and many more!
+
+
+  It is easy to get started and saves a lot of time at the inception of a FHIR project, allowing the team to focus on app features instead of initial plumbing.
 link: https://bonfhir.dev/
 ring: trial
 quadrant: languages-and-frameworks
