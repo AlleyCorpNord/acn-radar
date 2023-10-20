@@ -1,20 +1,20 @@
+'use client';
+
 import Head from "next/head";
 import { SearchParams, useBlipsFilter } from "../../hooks/useBlipsFilter";
 import {
-  createStyles,
   Button,
   Container,
   TextInput,
   Select,
   Table,
-  Header,
   Text,
   Drawer,
   Grid,
   Space,
   Group,
   Badge,
-  Title,
+  Title, Combobox, InputBase, Input, useCombobox,
 } from "@mantine/core";
 import { IconRadar, IconSearch } from "@tabler/icons-react";
 import { FC, useEffect, useState } from "react";
@@ -39,19 +39,11 @@ import { SelectItem } from "../../components/SelectOption";
 import { BadgeSelectItem } from "../../components/BadgeSelectOption";
 import { QuadrantAccessory, RingColor } from "../../types/helper";
 import logo from "./logo.png";
+import styles from "./blips.module.css";
+import { getFirstParagraphText } from '../../helpers/Parsers'
 
 
 marked.use(mangle());
-
-const useStyles = createStyles(() => ({
-  header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: "100%",
-    margin: "0 auto",
-  },
-}));
 
 interface BlipsHomeProps {
   blips: Blip[];
@@ -92,7 +84,7 @@ export const BlipsHome: FC<BlipsHomeProps> = ({ blips, projects }) => {
   });
 
   return (
-    <div>
+    <>
       <Head>
         <title>ACN Radar</title>
       </Head>
@@ -119,7 +111,7 @@ export const BlipsHome: FC<BlipsHomeProps> = ({ blips, projects }) => {
           </Drawer.Body>
         </Drawer.Content>
       </Drawer.Root>
-      <Container>
+      <Container size={"lg"} pb={'xl'}>
         <SearchBar
           projects={sortedProjects}
           searchParams={searchParams}
@@ -128,12 +120,12 @@ export const BlipsHome: FC<BlipsHomeProps> = ({ blips, projects }) => {
         <Space h="lg" />
         <BlipsTable blips={filteredBlips} onClick={setSelectedBlip} />
         {filteredBlips.length === 0 && (
-          <Text mt="lg" align="center">
+          <Text mt="lg" style={{ textAlign: 'center'}}>
             No blips found
           </Text>
         )}
       </Container>
-    </div>
+    </>
   );
 };
 
@@ -164,7 +156,7 @@ const SearchBar: FC<SearchBarProps> = ({
     <Grid columns={24}>
       <Grid.Col span="auto">
         <TextInput
-          icon={<IconSearch size="1.1rem" />}
+          leftSection={<IconSearch size="1.1rem" />}
           radius="md"
           size="sm"
           placeholder="Search"
@@ -181,7 +173,6 @@ const SearchBar: FC<SearchBarProps> = ({
           placeholder="Quadrant"
           radius="md"
           clearable={true}
-          itemComponent={SelectItem}
           data={quadrantData}
           value={searchParams.quadrant}
           onChange={(value) => onChange({ ...searchParams, quadrant: value })}
@@ -192,7 +183,6 @@ const SearchBar: FC<SearchBarProps> = ({
           placeholder="Ring"
           radius="md"
           clearable={true}
-          itemComponent={BadgeSelectItem}
           data={ringData}
           value={searchParams.ring}
           onChange={(value) => onChange({ ...searchParams, ring: value })}
@@ -216,35 +206,33 @@ const SearchBar: FC<SearchBarProps> = ({
 };
 
 function HomeHeader() {
-  const { classes } = useStyles();
-
   return (
-    <Header height={60} mb="lg">
-      <Container className={classes.header}>
-        <div>
-          <Group spacing={0}>
+    <Title mb="lg" className={styles.title}>
+      <Container className={styles.header} size={'lg'}>
+          <Group gap={0}>
             <Image
               src={logo}
               width={150}
               alt="AlleyCorp Nord Logo"
             />
-            <Title color="brand" order={3}>
+            <Title style={{
+              color: 'var(--mantine-color-brand-filled)'
+            }} order={3}>
               Tech Radar
             </Title>
           </Group>
-        </div>
         <Button
           color="brand"
           component="a"
           target="_blank"
-          rightIcon={<IconRadar size="1.1rem" />}
+          rightSection={<IconRadar size="1.1rem" />}
           href={`${CMSUrl}/collections/blip/new`}
           size="xs"
         >
           Add Blip
         </Button>
       </Container>
-    </Header>
+    </Title>
   );
 }
 
@@ -255,62 +243,57 @@ interface BlipsTableProps {
 
 const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
   return (
-    <Table highlightOnHover>
+    <Table highlightOnHover horizontalSpacing={'sm'} verticalSpacing={"sm"}>
       <colgroup>
-        <col />
+        <col/>
         <col style={{width: "80%"}} />
-       <col/>
-       <col/>
-       <col style={{width: "20%"}}/>
+        <col/>
+        <col/>
+        <col style={{width: "20%"}}/>
       </colgroup>
-      <thead>
-        <tr>
+      <Table.Thead>
+        <Table.Tr>
           <th>Title</th>
           <th>Description</th>
           <th>Quadrant</th>
           <th>Ring</th>
           <th>Projects</th>
-        </tr>
-      </thead>
-      <tbody>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>
         {blips.map((blip) => (
-          <tr
+          <Table.Tr
             key={blip.title}
             onClick={() => onClick?.(blip)}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer"  }}
           >
-            <td>{blip.title}</td>
-            <td style={{ maxWidth: "220px" }}>
-              <Text lineClamp={2}>
-                <div
-                  style={{ marginTop: "-16px", marginBottom: "-16px" }}
-                  dangerouslySetInnerHTML={{
-                    __html: marked(blip.description),
-                  }}
-                />
-              </Text>
-            </td>
-            <td>
+            <Table.Td>{blip.title}</Table.Td>
+            <Table.Td style={{ maxWidth: "220px" }}>
+              <Text lineClamp={2} style={{fontSize: 'var(--mantine-font-size-sm)'}} dangerouslySetInnerHTML={{
+                __html: getFirstParagraphText(marked(blip.description)),
+              }} />
+            </Table.Td>
+            <Table.Td>
               {
-                <Group spacing="xs" noWrap>
+                <Group gap={'xs'} wrap={'nowrap'}>
                   {QuadrantAccessory[blip.quadrant]}
-                  <Text>{Quadrants[blip.quadrant]}</Text>
+                  <Text size={'sm'}>{Quadrants[blip.quadrant]}</Text>
                 </Group>
               }
-            </td>
-            <td>
+            </Table.Td>
+            <Table.Td>
               {
                 <Badge variant="filled" color={RingColor[blip.ring]}>
                   {Rings[blip.ring]}
                 </Badge>
               }
-            </td>
-            <td>
+            </Table.Td>
+            <Table.Td>
               <Projects projects={blip.projects} />
-            </td>
-          </tr>
+            </Table.Td>
+          </Table.Tr>
         ))}
-      </tbody>
+      </Table.Tbody>
     </Table>
   );
 };

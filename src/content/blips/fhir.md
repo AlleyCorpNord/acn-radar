@@ -13,12 +13,8 @@ description: >-
   Seven International (HL7) health-care standards organization.
 
 
-  For additional information:
+  For additional information see the [official website](http://hl7.org/fhir/index.html) or the [Wikipedia entry](https://en.wikipedia.org/wiki/Fast_Healthcare_Interoperability_Resources).
 
-
-  * [Official website](http://hl7.org/fhir/index.html)
-
-  * [Wikipedia entry](https://en.wikipedia.org/wiki/Fast_Healthcare_Interoperability_Resources)
 opinion: >-
   We believe that a standards based approach for managing Electronic Health
   Record data exchange is key to drive innovation and acceleration in the Health

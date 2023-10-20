@@ -10,7 +10,7 @@ interface ItemProps extends React.ComponentPropsWithoutRef<"div"> {
 export const BadgeSelectItem = forwardRef<HTMLDivElement, ItemProps>(
   ({ color, label, ...others }: ItemProps, ref) => (
     <div ref={ref} {...others}>
-      <Group noWrap>
+      <Group wrap={'nowrap'}>
         <Badge variant="filled" color={color}>
           {label}
         </Badge>

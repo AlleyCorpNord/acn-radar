@@ -1,7 +1,8 @@
 import Head from "next/head";
 import React from "react";
-import { MantineProvider, useMantineTheme } from "@mantine/core";
+import { createTheme, MantineProvider, rem } from "@mantine/core";
 import { Outfit, Atkinson_Hyperlegible } from "next/font/google";
+import '@mantine/core/styles.css';
 
 const headingFont = Outfit({
   subsets: ["latin"],
@@ -11,9 +12,27 @@ const bodyFont = Atkinson_Hyperlegible({
   subsets: ["latin"],
 });
 
-const App = ({ Component, pageProps }) => {
-  const theme = useMantineTheme();
+const theme = createTheme({
+  colors: {
+    brand: [
+      "#78AAA0",
+      "#61A799",
+      "#4DA391",
+      "#3D9E8A",
+      "#2C9A84",
+      "#1C997F",
+      "#0B997C",
+      "#177D68",
+      "#1E6758",
+      "#21564B"
+    ],
+  },
+  fontFamily: bodyFont.style.fontFamily,
+  headings: { fontFamily: headingFont.style.fontFamily },
+  primaryColor: "brand",
+})
 
+const App = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
@@ -24,27 +43,7 @@ const App = ({ Component, pageProps }) => {
         <meta name="robots" content="noindex" />
       </Head>
       <MantineProvider
-        theme={{
-          ...theme,
-          colors: {
-            ...theme.colors,
-            brand: [
-              "#78AAA0",
-              "#61A799",
-              "#4DA391",
-              "#3D9E8A",
-              "#2C9A84",
-              "#1C997F",
-              "#0B997C",
-              "#177D68",
-              "#1E6758",
-              "#21564B"
-            ],
-          },
-          fontFamily: bodyFont.style.fontFamily,
-          headings: { fontFamily: headingFont.style.fontFamily },
-          primaryColor: "brand",
-        }}
+        theme={theme}
       >
         <Component {...pageProps} />
       </MantineProvider>

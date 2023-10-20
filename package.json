@@ -12,9 +12,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/server": "^11.11.0",
-    "@mantine/core": "^6.0.21",
-    "@mantine/hooks": "^6.0.21",
-    "@mantine/next": "^6.0.21",
+    "@mantine/core": "^7.1.5",
+    "@mantine/hooks": "^7.1.5",
     "@tabler/icons-react": "^2.39.0",
     "dompurify": "^3.0.6",
     "front-matter": "^4.0.2",
