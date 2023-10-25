@@ -3,10 +3,10 @@ import { IconTool, IconHelicopterLanding, IconCode, IconGoGame } from "@tabler/i
 import { Quadrants, Rings } from "./Blip";
 
 export const QuadrantAccessory: Record<keyof typeof Quadrants, ReactNode> = {
-  tools: <IconTool size="1.2rem" />,
-  platforms: <IconHelicopterLanding size="1.2rem" />,
-  "languages-and-frameworks": <IconCode size="1.2rem" />,
-  techniques: <IconGoGame size="1.2rem" />,
+  tools: <IconTool size={19} />,
+  platforms: <IconHelicopterLanding size={19} />,
+  "languages-and-frameworks": <IconCode size={19} />,
+  techniques: <IconGoGame size={19} />,
 };
 
 export const RingColor: Record<keyof typeof Rings, string> = {

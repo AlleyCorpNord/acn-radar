@@ -128,7 +128,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
               component="a"
               href={`${CMSUrl}/collections/blip/entries/${blip.slug}`}
               target="_blank"
-              rightSection={<IconEdit size="1.1rem" />}
+              rightSection={<IconEdit size={18} />}
               size="xs"
             >
               Edit Blip

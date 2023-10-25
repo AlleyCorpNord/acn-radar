@@ -1,116 +1,77 @@
-'use client';
-
-import Head from "next/head";
-import { SearchParams, useBlipsFilter } from "../../hooks/useBlipsFilter";
+'use client'
 import {
-  Button,
-  Container,
-  TextInput,
-  Select,
-  Table,
-  Text,
-  Drawer,
-  Grid,
-  Space,
-  Group,
   Badge,
-  Title, Combobox, InputBase, Input, useCombobox,
-} from "@mantine/core";
-import { IconRadar, IconSearch } from "@tabler/icons-react";
-import { FC, useEffect, useState } from "react";
-import {
-  Blip,
-  Quadrants,
-  Rings,
-  allQuadrants,
-  allRings,
-} from "../../types/Blip";
-import { useDisclosure } from "@mantine/hooks";
-import { BlipDetails } from "../../components/BlipDetails";
-import Project from "../../types/Project";
-import { marked } from "marked";
-import { mangle } from "marked-mangle";
-import { useRouter } from "next/router";
-import { GetStaticPaths, GetStaticPropsResult } from "next";
-import { importContent } from "../../helpers/DocumentLoading";
-import { CMSUrl } from "../../types/Constants";
-import Image from "next/image";
-import { SelectItem } from "../../components/SelectOption";
-import { BadgeSelectItem } from "../../components/BadgeSelectOption";
-import { QuadrantAccessory, RingColor } from "../../types/helper";
-import logo from "./logo.png";
-import styles from "./blips.module.css";
-import { getFirstParagraphText } from '../../helpers/Parsers'
-
+  Button,
+  Container, Drawer,
+  Grid,
+  Group,
+  Select, Space,
+  Table, Text,
+  TextInput,
+  Title,
+} from '@mantine/core'
+import styles from './blips.module.css'
+import Image from 'next/image'
+import logo from './logo.png'
+import { IconRadar, IconSearch } from '@tabler/icons-react'
+import { CMSUrl } from '../../../types/Constants'
+import { FC, Fragment, useEffect, useState } from 'react'
+import { allQuadrants, allRings, Blip, Quadrants, Rings } from '../../../types/Blip'
+import { QuadrantAccessory, RingColor } from '../../../types/helper'
+import Project from '../../../types/Project'
+import { SearchParams, useBlipsFilter } from '../../../hooks/useBlipsFilter'
+import { getFirstParagraphText } from '../../../helpers/Parsers'
+import { marked } from 'marked'
+import Head from 'next/head'
+import { BlipDetails } from '../../../components/BlipDetails'
+import { useDisclosure } from '@mantine/hooks'
+import { useParams, useRouter } from 'next/navigation'
+import { mangle } from 'marked-mangle'
 
 marked.use(mangle());
 
-interface BlipsHomeProps {
+interface BlipsPageContentProps {
   blips: Blip[];
   projects: Project[];
 }
 
-export const BlipsHome: FC<BlipsHomeProps> = ({ blips, projects }) => {
-  const [selectedBlip, setSelectedBlip] = useState<Blip | null>();
+export default function BlipsPageContent({ blips, projects }: BlipsPageContentProps) {
+  const [selectedBlip, setSelectedBlip] = useState<Blip | undefined>();
   const [opened, { open, close }] = useDisclosure(false);
+
   const [searchParams, setSearchParams] = useState<SearchParams>({});
   const filteredBlips = useBlipsFilter(blips, searchParams);
-  const sortedProjects = projects.sort((a, b) =>
-    a.title.localeCompare(b.title)
-  );
-  const router = useRouter();
-  const selectedSlug = router.query.slug?.[0];
-
-  if (selectedSlug) {
-    const blip = blips.find((blip) => blip.slug === selectedSlug);
-    if (blip && blip !== selectedBlip) setSelectedBlip(blip);
-  }
-
-  const removeFragment = () => {
-    router.replace(router.pathname, "", { shallow: true });
-  };
-
-  useEffect(() => {
-    if (selectedBlip) {
-      open();
-      router.replace(router.pathname, selectedBlip.slug, { shallow: true });
-    }
-  }, [selectedBlip]);
-
   filteredBlips.forEach((element) => {
     element.projects = projects.filter((project) =>
       element.projectIds.includes(project.slug)
     );
   });
+  const sortedProjects = projects.sort((a, b) =>
+    a.title.localeCompare(b.title)
+  );
+
+  const params = useParams<{ slug?: string[] }>()
+  useEffect(() => {
+    if (params?.slug) {
+      const blip = blips.find((blip) => blip.slug === params?.slug?.[0]);
+      if (blip?.slug !== selectedBlip?.slug) {
+        setSelectedBlip(blip);
+      }
+    }
+  }, [params]);
+
+  const removeFragment = () => {
+    setSelectedBlip(undefined);
+    history.pushState(null, '', `/blips`)
+  };
 
   return (
-    <>
+    <Fragment>
       <Head>
         <title>ACN Radar</title>
       </Head>
       <HomeHeader />
-      <Drawer.Root
-        opened={opened}
-        onClose={() => {
-          setTimeout(() => {
-            setSelectedBlip(null);
-          }, 200);
-          removeFragment();
-          close();
-        }}
-        position="right"
-        size="xl"
-      >
-        <Drawer.Overlay blur={4} opacity={0.5} />
-        <Drawer.Content>
-          <Drawer.Header>
-            <Drawer.CloseButton />
-          </Drawer.Header>
-          <Drawer.Body>
-            {selectedBlip && <BlipDetails blip={selectedBlip} />}
-          </Drawer.Body>
-        </Drawer.Content>
-      </Drawer.Root>
+      <BlipDrawer onClose={removeFragment} blip={selectedBlip}/>
       <Container size={"lg"} pb={'xl'}>
         <SearchBar
           projects={sortedProjects}
@@ -118,16 +79,50 @@ export const BlipsHome: FC<BlipsHomeProps> = ({ blips, projects }) => {
           onChange={setSearchParams}
         />
         <Space h="lg" />
-        <BlipsTable blips={filteredBlips} onClick={setSelectedBlip} />
+        <BlipsTable blips={filteredBlips} onClick={(blip) => {
+          setSelectedBlip(blip);
+          history.pushState(null, '', `/blips/${blip.slug}`)
+        }} />
         {filteredBlips.length === 0 && (
           <Text mt="lg" style={{ textAlign: 'center'}}>
             No blips found
           </Text>
         )}
       </Container>
-    </>
+    </Fragment>
   );
-};
+}
+
+function BlipDrawer({ blip, onClose }: { blip?: Blip, onClose: () => void }) {
+  const [opened, { open, close }] = useDisclosure(false);
+
+  useEffect(() => {
+    if (blip) {
+      open();
+    } else {
+      close();
+    }
+  }, [blip]);
+
+  return (
+    <Drawer.Root
+      opened={opened}
+      onClose={onClose}
+      position="right"
+      size="xl"
+    >
+      <Drawer.Overlay blur={4} backgroundOpacity={0.5} />
+      <Drawer.Content>
+        <Drawer.Header>
+          <Drawer.CloseButton />
+        </Drawer.Header>
+        <Drawer.Body>
+          {blip && <BlipDetails blip={blip} />}
+        </Drawer.Body>
+      </Drawer.Content>
+    </Drawer.Root>
+  );
+}
 
 interface SearchBarProps {
   projects: Project[];
@@ -156,7 +151,7 @@ const SearchBar: FC<SearchBarProps> = ({
     <Grid columns={24}>
       <Grid.Col span="auto">
         <TextInput
-          leftSection={<IconSearch size="1.1rem" />}
+          leftSection={<IconSearch size={18} />}
           radius="md"
           size="sm"
           placeholder="Search"
@@ -209,23 +204,23 @@ function HomeHeader() {
   return (
     <Title mb="lg" className={styles.title}>
       <Container className={styles.header} size={'lg'}>
-          <Group gap={0}>
-            <Image
-              src={logo}
-              width={150}
-              alt="AlleyCorp Nord Logo"
-            />
-            <Title style={{
-              color: 'var(--mantine-color-brand-filled)'
-            }} order={3}>
-              Tech Radar
-            </Title>
-          </Group>
+        <Group gap={0}>
+          <Image
+            src={logo}
+            width={150}
+            alt="AlleyCorp Nord Logo"
+          />
+          <Title style={{
+            color: 'var(--mantine-color-brand-filled)'
+          }} order={3}>
+            Tech Radar
+          </Title>
+        </Group>
         <Button
           color="brand"
           component="a"
           target="_blank"
-          rightSection={<IconRadar size="1.1rem" />}
+          rightSection={<IconRadar size={18} />}
           href={`${CMSUrl}/collections/blip/new`}
           size="xs"
         >
@@ -235,6 +230,7 @@ function HomeHeader() {
     </Title>
   );
 }
+
 
 interface BlipsTableProps {
   blips: Blip[];
@@ -298,8 +294,6 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
   );
 };
 
-export default BlipsHome;
-
 function Projects({ projects }: { projects: Project[] | undefined }) {
   if (!projects?.length) {
     return null;
@@ -325,25 +319,3 @@ function Projects({ projects }: { projects: Project[] | undefined }) {
     </>
   );
 }
-
-export async function getStaticProps(): Promise<
-  GetStaticPropsResult<BlipsHomeProps>
-> {
-  const blips = await importContent<Blip>("blips");
-  const projects = await importContent<Project>("projects");
-
-  return { props: { blips, projects } };
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [
-      {
-        params: {
-          slug: [],
-        },
-      },
-    ],
-    fallback: "blocking",
-  };
-};
