@@ -1,35 +1,48 @@
-'use client'
+"use client";
 import {
   Badge,
-  Button, Combobox,
-  Container, Drawer,
+  Button,
+  Combobox,
+  Container,
+  Drawer,
   Grid,
-  Group, Input, InputBase,
-  Select, Space,
-  Table, Text,
+  Group,
+  Input,
+  InputBase,
+  Select,
+  Space,
+  Table,
+  Text,
   TextInput,
-  Title, useCombobox,
-} from '@mantine/core'
-import styles from './blips.module.css'
-import Image from 'next/image'
-import logo from './logo.png'
-import { IconRadar, IconSearch } from '@tabler/icons-react'
-import { CMSUrl } from '../../../types/Constants'
-import { FC, Fragment, ReactNode, useEffect, useState } from 'react'
-import { allQuadrants, allRings, Blip, Quadrants, Rings } from '../../../types/Blip'
-import { QuadrantAccessory, RingColor } from '../../../types/helper'
-import Project from '../../../types/Project'
-import { SearchParams, useBlipsFilter } from '../../../hooks/useBlipsFilter'
-import { getFirstParagraphText } from '../../../helpers/Parsers'
-import { marked } from 'marked'
-import Head from 'next/head'
-import { BlipDetails } from '../../../components/BlipDetails'
-import { useDisclosure } from '@mantine/hooks'
-import { useParams } from 'next/navigation'
-import { mangle } from 'marked-mangle'
-import { SelectItem } from '../../../components/SelectOption'
-import CustomSelect from '../../../components/CustomSelect'
-import { BadgeSelectItem } from '../../../components/BadgeSelectOption'
+  Title,
+  useCombobox,
+} from "@mantine/core";
+import styles from "./blips.module.css";
+import Image from "next/image";
+import logo from "./logo.png";
+import { IconRadar, IconSearch } from "@tabler/icons-react";
+import { CMSUrl } from "../../../types/Constants";
+import { FC, Fragment, ReactNode, useEffect, useState } from "react";
+import {
+  allQuadrants,
+  allRings,
+  Blip,
+  Quadrants,
+  Rings,
+} from "../../../types/Blip";
+import { QuadrantAccessory, RingColor } from "../../../types/helper";
+import Project from "../../../types/Project";
+import { SearchParams, useBlipsFilter } from "../../../hooks/useBlipsFilter";
+import { getFirstParagraphText } from "../../../helpers/Parsers";
+import { marked } from "marked";
+import Head from "next/head";
+import { BlipDetails } from "../../../components/BlipDetails";
+import { useDisclosure } from "@mantine/hooks";
+import { useParams } from "next/navigation";
+import { mangle } from "marked-mangle";
+import { SelectItem } from "../../../components/SelectOption";
+import CustomSelect from "../../../components/CustomSelect";
+import { BadgeSelectItem } from "../../../components/BadgeSelectOption";
 
 marked.use(mangle());
 
@@ -38,7 +51,10 @@ interface BlipsPageContentProps {
   projects: Project[];
 }
 
-export default function BlipsPageContent({ blips, projects }: BlipsPageContentProps) {
+export default function BlipsPageContent({
+  blips,
+  projects,
+}: BlipsPageContentProps) {
   const [selectedBlip, setSelectedBlip] = useState<Blip | undefined>();
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -46,14 +62,14 @@ export default function BlipsPageContent({ blips, projects }: BlipsPageContentPr
   const filteredBlips = useBlipsFilter(blips, searchParams);
   filteredBlips.forEach((element) => {
     element.projects = projects.filter((project) =>
-      element.projectIds.includes(project.slug)
+      element.projectIds.includes(project.slug),
     );
   });
   const sortedProjects = projects.sort((a, b) =>
-    a.title.localeCompare(b.title)
+    a.title.localeCompare(b.title),
   );
 
-  const params = useParams<{ slug?: string[] }>()
+  const params = useParams<{ slug?: string[] }>();
   useEffect(() => {
     if (params?.slug) {
       const blip = blips.find((blip) => blip.slug === params?.slug?.[0]);
@@ -65,7 +81,7 @@ export default function BlipsPageContent({ blips, projects }: BlipsPageContentPr
 
   const removeFragment = () => {
     setSelectedBlip(undefined);
-    history.pushState(null, '', `/blips`)
+    history.pushState(null, "", `/blips`);
   };
 
   return (
@@ -74,20 +90,23 @@ export default function BlipsPageContent({ blips, projects }: BlipsPageContentPr
         <title>ACN Radar</title>
       </Head>
       <HomeHeader />
-      <BlipDrawer onClose={removeFragment} blip={selectedBlip}/>
-      <Container size={"lg"} pb={'xl'}>
+      <BlipDrawer onClose={removeFragment} blip={selectedBlip} />
+      <Container size={"lg"} pb={"xl"}>
         <SearchBar
           projects={sortedProjects}
           searchParams={searchParams}
           onChange={setSearchParams}
         />
         <Space h="lg" />
-        <BlipsTable blips={filteredBlips} onClick={(blip) => {
-          setSelectedBlip(blip);
-          history.pushState(null, '', `/blips/${blip.slug}`)
-        }} />
+        <BlipsTable
+          blips={filteredBlips}
+          onClick={(blip) => {
+            setSelectedBlip(blip);
+            history.pushState(null, "", `/blips/${blip.slug}`);
+          }}
+        />
         {filteredBlips.length === 0 && (
-          <Text mt="lg" style={{ textAlign: 'center'}}>
+          <Text mt="lg" style={{ textAlign: "center" }}>
             No blips found
           </Text>
         )}
@@ -96,7 +115,7 @@ export default function BlipsPageContent({ blips, projects }: BlipsPageContentPr
   );
 }
 
-function BlipDrawer({ blip, onClose }: { blip?: Blip, onClose: () => void }) {
+function BlipDrawer({ blip, onClose }: { blip?: Blip; onClose: () => void }) {
   const [opened, { open, close }] = useDisclosure(false);
 
   useEffect(() => {
@@ -108,20 +127,13 @@ function BlipDrawer({ blip, onClose }: { blip?: Blip, onClose: () => void }) {
   }, [blip]);
 
   return (
-    <Drawer.Root
-      opened={opened}
-      onClose={onClose}
-      position="right"
-      size="xl"
-    >
+    <Drawer.Root opened={opened} onClose={onClose} position="right" size="xl">
       <Drawer.Overlay blur={4} backgroundOpacity={0.5} />
       <Drawer.Content>
         <Drawer.Header>
           <Drawer.CloseButton />
         </Drawer.Header>
-        <Drawer.Body>
-          {blip && <BlipDetails blip={blip} />}
-        </Drawer.Body>
+        <Drawer.Body>{blip && <BlipDetails blip={blip} />}</Drawer.Body>
       </Drawer.Content>
     </Drawer.Root>
   );
@@ -168,9 +180,11 @@ const SearchBar: FC<SearchBarProps> = ({
 
       <Grid.Col span={6}>
         <CustomSelect
-          placeholder={'Quadrant'}
+          placeholder={"Quadrant"}
           value={searchParams.quadrant}
-          renderOption={({ value, label, accessory }) => <SelectItem value={value} label={label} accessory={accessory} />}
+          renderOption={({ value, label, accessory }) => (
+            <SelectItem value={value} label={label} accessory={accessory} />
+          )}
           data={quadrantData}
           onChange={(value) => onChange({ ...searchParams, quadrant: value })}
         />
@@ -178,10 +192,13 @@ const SearchBar: FC<SearchBarProps> = ({
       <Grid.Col span={4}>
         <CustomSelect
           onChange={(value) => onChange({ ...searchParams, ring: value })}
-          renderOption={({ value, label, color }) => <BadgeSelectItem value={value} label={label} color={color} />}
+          renderOption={({ value, label, color }) => (
+            <BadgeSelectItem value={value} label={label} color={color} />
+          )}
           data={ringData}
           value={searchParams.ring}
-          placeholder={'Ring'}/>
+          placeholder={"Ring"}
+        />
       </Grid.Col>
       <Grid.Col span={4}>
         <Select
@@ -203,16 +220,15 @@ const SearchBar: FC<SearchBarProps> = ({
 function HomeHeader() {
   return (
     <Title mb="lg" className={styles.title}>
-      <Container className={styles.header} size={'lg'}>
+      <Container className={styles.header} size={"lg"}>
         <Group gap={0}>
-          <Image
-            src={logo}
-            width={150}
-            alt="AlleyCorp Nord Logo"
-          />
-          <Title style={{
-            color: 'var(--mantine-color-brand-filled)'
-          }} order={3}>
+          <Image src={logo} width={150} alt="AlleyCorp Nord Logo" />
+          <Title
+            style={{
+              color: "var(--mantine-color-brand-filled)",
+            }}
+            order={3}
+          >
             Tech Radar
           </Title>
         </Group>
@@ -231,7 +247,6 @@ function HomeHeader() {
   );
 }
 
-
 interface BlipsTableProps {
   blips: Blip[];
   onClick?: (blip: Blip) => void;
@@ -239,13 +254,13 @@ interface BlipsTableProps {
 
 const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
   return (
-    <Table highlightOnHover horizontalSpacing={'sm'} verticalSpacing={"sm"}>
+    <Table highlightOnHover horizontalSpacing={"sm"} verticalSpacing={"sm"}>
       <colgroup>
-        <col/>
-        <col style={{width: "80%"}} />
-        <col/>
-        <col/>
-        <col style={{width: "20%"}}/>
+        <col />
+        <col style={{ width: "80%" }} />
+        <col />
+        <col />
+        <col style={{ width: "20%" }} />
       </colgroup>
       <Table.Thead>
         <Table.Tr>
@@ -261,19 +276,23 @@ const BlipsTable: FC<BlipsTableProps> = ({ blips, onClick }) => {
           <Table.Tr
             key={blip.title}
             onClick={() => onClick?.(blip)}
-            style={{ cursor: "pointer"  }}
+            style={{ cursor: "pointer" }}
           >
             <Table.Td>{blip.title}</Table.Td>
             <Table.Td style={{ maxWidth: "220px" }}>
-              <Text lineClamp={2} style={{fontSize: 'var(--mantine-font-size-sm)'}} dangerouslySetInnerHTML={{
-                __html: getFirstParagraphText(marked(blip.description)),
-              }} />
+              <Text
+                lineClamp={2}
+                style={{ fontSize: "var(--mantine-font-size-sm)" }}
+                dangerouslySetInnerHTML={{
+                  __html: getFirstParagraphText(marked(blip.description)),
+                }}
+              />
             </Table.Td>
             <Table.Td>
               {
-                <Group gap={'xs'} wrap={'nowrap'}>
+                <Group gap={"xs"} wrap={"nowrap"}>
                   {QuadrantAccessory[blip.quadrant]}
-                  <Text size={'sm'}>{Quadrants[blip.quadrant]}</Text>
+                  <Text size={"sm"}>{Quadrants[blip.quadrant]}</Text>
                 </Group>
               }
             </Table.Td>

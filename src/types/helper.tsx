@@ -1,5 +1,10 @@
 import { ReactNode } from "react";
-import { IconTool, IconHelicopterLanding, IconCode, IconGoGame } from "@tabler/icons-react";
+import {
+  IconTool,
+  IconHelicopterLanding,
+  IconCode,
+  IconGoGame,
+} from "@tabler/icons-react";
 import { Quadrants, Rings } from "./Blip";
 
 export const QuadrantAccessory: Record<keyof typeof Quadrants, ReactNode> = {

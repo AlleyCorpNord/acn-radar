@@ -17,13 +17,13 @@ const baseContentPath = "./src/content";
 
 export const loadDocumentNames = async (collection: CollectionType) => {
   const content = await fs.readdir(
-    `./src/content/${collectionPath[collection]}`
+    `./src/content/${collectionPath[collection]}`,
   );
   return content;
 };
 
 export async function importContent<T>(
-  collection: CollectionType
+  collection: CollectionType,
 ): Promise<T[]> {
   const fileNames = await loadDocumentNames(collection);
 
@@ -31,11 +31,11 @@ export async function importContent<T>(
     fileNames.map(async (name) => {
       const document = await fs.readFile(
         `${baseContentPath}/${collectionPath[collection]}/${name}`,
-        "utf-8"
+        "utf-8",
       );
       const content = fm(document).attributes as T;
 
       return { ...content, slug: name.split(".")[0] };
-    })
+    }),
   ) as Promise<T[]>;
 }

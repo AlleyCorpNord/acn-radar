@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
-import { createTheme, MantineProvider } from '@mantine/core'
-import React from 'react'
-import { Atkinson_Hyperlegible, Outfit } from 'next/font/google'
-import '@mantine/core/styles.css';
+import { createTheme, MantineProvider } from "@mantine/core";
+import React from "react";
+import { Atkinson_Hyperlegible, Outfit } from "next/font/google";
+import "@mantine/core/styles.css";
 
 const headingFont = Outfit({
   subsets: ["latin"],
@@ -25,18 +25,14 @@ const theme = createTheme({
       "#0B997C",
       "#177D68",
       "#1E6758",
-      "#21564B"
+      "#21564B",
     ],
   },
   fontFamily: bodyFont.style.fontFamily,
   headings: { fontFamily: headingFont.style.fontFamily },
   primaryColor: "brand",
-})
+});
 
 export default function LayoutContent({ children }) {
-  return <MantineProvider
-    theme={theme}
-  >
-    {children}
-  </MantineProvider>
+  return <MantineProvider theme={theme}>{children}</MantineProvider>;
 }

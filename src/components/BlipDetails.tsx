@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { type FC } from "react";
 import { Blip, BusinessModel, Quadrants, Rings } from "../types/Blip";
@@ -31,7 +31,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
   return (
     <Container style={{ height: "100%" }}>
       <Flex direction="column" style={{ height: "100%" }}>
-        <Group justify={'space-between'} style={{ marginBottom: 6 }}>
+        <Group justify={"space-between"} style={{ marginBottom: 6 }}>
           <Title order={1}>{blip.title}</Title>
           <Flex direction="column" align="flex-end" gap="xs">
             <Group gap="xs">
@@ -115,7 +115,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             bottom: 0,
           }}
         >
-          <Group justify={'space-between'}>
+          <Group justify={"space-between"}>
             <Text>
               <a
                 href={`${RepositoryUrl}/src/content/blips/${blip.slug}.md`}

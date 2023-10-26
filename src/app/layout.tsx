@@ -1,11 +1,11 @@
-import Head from 'next/head'
-import React from 'react'
-import LayoutContent from './LayoutContent'
+import Head from "next/head";
+import React from "react";
+import LayoutContent from "./LayoutContent";
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html>
@@ -17,8 +17,8 @@ export default function RootLayout({
         <meta name="robots" content="noindex" />
       </Head>
       <body>
-        <LayoutContent children={children}/>
+        <LayoutContent children={children} />
       </body>
     </html>
-  )
+  );
 }
