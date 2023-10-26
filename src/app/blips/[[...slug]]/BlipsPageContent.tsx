@@ -1,21 +1,21 @@
 'use client'
 import {
   Badge,
-  Button,
+  Button, Combobox,
   Container, Drawer,
   Grid,
-  Group,
+  Group, Input, InputBase,
   Select, Space,
   Table, Text,
   TextInput,
-  Title,
+  Title, useCombobox,
 } from '@mantine/core'
 import styles from './blips.module.css'
 import Image from 'next/image'
 import logo from './logo.png'
 import { IconRadar, IconSearch } from '@tabler/icons-react'
 import { CMSUrl } from '../../../types/Constants'
-import { FC, Fragment, useEffect, useState } from 'react'
+import { FC, Fragment, ReactNode, useEffect, useState } from 'react'
 import { allQuadrants, allRings, Blip, Quadrants, Rings } from '../../../types/Blip'
 import { QuadrantAccessory, RingColor } from '../../../types/helper'
 import Project from '../../../types/Project'
@@ -25,8 +25,11 @@ import { marked } from 'marked'
 import Head from 'next/head'
 import { BlipDetails } from '../../../components/BlipDetails'
 import { useDisclosure } from '@mantine/hooks'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { mangle } from 'marked-mangle'
+import { SelectItem } from '../../../components/SelectOption'
+import CustomSelect from '../../../components/CustomSelect'
+import { BadgeSelectItem } from '../../../components/BadgeSelectOption'
 
 marked.use(mangle());
 
@@ -164,24 +167,21 @@ const SearchBar: FC<SearchBarProps> = ({
       </Grid.Col>
 
       <Grid.Col span={6}>
-        <Select
-          placeholder="Quadrant"
-          radius="md"
-          clearable={true}
-          data={quadrantData}
+        <CustomSelect
+          placeholder={'Quadrant'}
           value={searchParams.quadrant}
+          renderOption={({ value, label, accessory }) => <SelectItem value={value} label={label} accessory={accessory} />}
+          data={quadrantData}
           onChange={(value) => onChange({ ...searchParams, quadrant: value })}
         />
       </Grid.Col>
       <Grid.Col span={4}>
-        <Select
-          placeholder="Ring"
-          radius="md"
-          clearable={true}
+        <CustomSelect
+          onChange={(value) => onChange({ ...searchParams, ring: value })}
+          renderOption={({ value, label, color }) => <BadgeSelectItem value={value} label={label} color={color} />}
           data={ringData}
           value={searchParams.ring}
-          onChange={(value) => onChange({ ...searchParams, ring: value })}
-        />
+          placeholder={'Ring'}/>
       </Grid.Col>
       <Grid.Col span={4}>
         <Select
