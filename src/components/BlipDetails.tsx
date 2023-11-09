@@ -1,3 +1,5 @@
+"use client";
+
 import React, { type FC } from "react";
 import { Blip, BusinessModel, Quadrants, Rings } from "../types/Blip";
 import DOMPurify from "dompurify";
@@ -29,10 +31,10 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
   return (
     <Container style={{ height: "100%" }}>
       <Flex direction="column" style={{ height: "100%" }}>
-        <Group position="apart" style={{ marginBottom: 6 }}>
+        <Group justify={"space-between"} style={{ marginBottom: 6 }}>
           <Title order={1}>{blip.title}</Title>
           <Flex direction="column" align="flex-end" gap="xs">
-            <Group spacing="xs">
+            <Group gap="xs">
               {QuadrantAccessory[blip.quadrant]}
               {<Text>{Quadrants[blip.quadrant]}</Text>}
             </Group>
@@ -113,7 +115,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
             bottom: 0,
           }}
         >
-          <Group position="apart">
+          <Group justify={"space-between"}>
             <Text>
               <a
                 href={`${RepositoryUrl}/src/content/blips/${blip.slug}.md`}
@@ -126,8 +128,7 @@ export const BlipDetails: FC<BlipDetailsProps> = ({ blip }) => {
               component="a"
               href={`${CMSUrl}/collections/blip/entries/${blip.slug}`}
               target="_blank"
-              color="light"
-              rightIcon={<IconEdit size="1.1rem" />}
+              rightSection={<IconEdit size={18} />}
               size="xs"
             >
               Edit Blip

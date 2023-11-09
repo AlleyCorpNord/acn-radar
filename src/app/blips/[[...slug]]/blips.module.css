@@ -1,0 +1,11 @@
+.title {
+  border-bottom: 1px solid #e0e0e0;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin: 1rem auto;
+  }
+}

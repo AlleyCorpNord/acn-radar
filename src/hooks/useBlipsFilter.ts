@@ -19,7 +19,7 @@ let minisearch = new MiniSearch({
 
 export const useBlipsFilter = (
   blips: Blip[],
-  searchParams: SearchParams
+  searchParams: SearchParams,
 ): Blip[] => {
   if (!blips) return [];
 
