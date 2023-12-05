@@ -41,8 +41,6 @@ opinion: >-
   * Cursor also promotes better developer comprehension, as it requires articulating intentions in English, similar to pair programming or the "rubber duck" debugging method.
 
 
-
-
   **Cons**:
 
 
@@ -51,6 +49,10 @@ opinion: >-
   * Every once in a while a function of Vscode, or a plugin you are used to using may not work, but I have found this not to be a huge problem because Cursor's AI features bring so much automation.
 
   * This could encourage you to pass over details of the implementation, so it is important to slow down and make sure you understand the changes that are being made so you do not lose understanding, or any learning moments
+
+  * the free tier has a limited amount of requests to gpt 4, and is a little slow, so if you are not using the paid tier, it might be slow you don't sometimes.
+
+  * github copilot is adopting a lot of the same features.
 
 
   In conclusion, while there are minor drawbacks, Cursor's advanced AI capabilities and the efficiency gains it offers make it a compelling choice for enhancing our development processes. The tool's ability to streamline coding, provide quick access to information, and enhance comprehension, outweighs the minor inconveniences of adapting to its interface.
